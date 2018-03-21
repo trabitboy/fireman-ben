@@ -45,6 +45,22 @@ function displayscore()
   -- love.graphics.print(score,512,40)
 end
 
+function drawhitbox(o)
+ if o.hbx~=nil then
+  --we have something to blit
+  --TODO
+  love.graphics.setColor(0,0,0,255)
+  love.graphics.setLineWidth(3)
+  if o.zoom~=nil then
+   love.graphics.rectangle("line",o.zx+o.hbx.x,o.zy+o.hbx.y,o.hbx.w,o.hbx.h)
+  else
+   love.graphics.rectangle("line",o.x+o.hbx.x,o.y+o.hbx.y,o.hbx.w,o.hbx.h)
+  end
+  love.graphics.setColor(255,255,255,255)
+ end
+
+end
+
 function drawgame()
  love.graphics.setCanvas(vscreen)
  
@@ -103,6 +119,8 @@ function drawgame()
    else
     love.graphics.draw(v.pic,(pfx+v.x),(pfy+v.y))
    end
+   --dbg
+   -- drawhitbox(v)
  -- love.graphics.print("Normal text", 50, 50)  
  end
  

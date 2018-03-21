@@ -1,6 +1,8 @@
 --jauge de fraicheur/ source de fraicheur
 
 
+--TODO new collhbs function that takes into account the special case of zoomed object (x, y are different)
+
 --gplay variables
 firezoominc=0.1
 minfirezoom=0.2
@@ -210,20 +212,15 @@ function love.load()
  rank2=love.graphics.newImage("rank2.png")
  rank3=love.graphics.newImage("rank3.png")
 
- xpl=love.graphics.newImage("explosion.png")
 
  -- bb=love.graphics.newImage("bb.png")
  
  -- bg1=love.graphics.newImage("bg1.png")
  -- bg2=love.graphics.newImage("bg2.png")
  
- devil=love.graphics.newImage("devil.png")
 
- pill=love.graphics.newImage("pill.png")
  
- ghost=love.graphics.newImage("ghost.png")
  bullet=love.graphics.newImage("bullet.png")
- image=ghost:getData()
  -- local image = love.image.newImageData( 'path/to/Image.png' )
  -- local pixels = {}
   -- for x = 1, image:getWidth() do

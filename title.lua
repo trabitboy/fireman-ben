@@ -5,7 +5,7 @@ function drawtitle()
  -- love.graphics.printf( text, x, y, limit, align, r, sx, sy, ox, oy, kx, ky )
 
  -- love.graphics.printf("Danmaku Burp",20,20,10,"center",0,4,4,0,0,0,0)
- love.graphics.print("press SPACE",200,600)
+ love.graphics.print("v 1.3 coll fix",0,0)
  rdrvscreen()
 end
 

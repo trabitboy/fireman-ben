@@ -26,7 +26,7 @@ function firebehavior(f,i)
 	--collision water with fire 
 	for j,b in pairs(bullets) 
 	do
-	 if(collhbs(b.x,b.y,b.hbx,f.x,f.y,f.hbx)) then
+	 if(collhbs(b.x,b.y,b.hbx,f.zx,f.zy,f.hbx)) then
 	  table.remove(bullets,j)
 	  if rankcounter>0 then
 		rankcounter=rankcounter-waterreward
@@ -71,8 +71,12 @@ end
 
 --handles zoom from center coordinates
 function refreshxyfromzoom(f)
+	--upper left of ZOOM 1 version
 	f.x=f.cx-(f.picdata:getWidth()/2)
 	f.y=f.cy-(f.picdata:getHeight()/2)
+	--upper left of current zoom version
+	f.zx=f.x+(f.picdata:getWidth()-f.picdata:getWidth()*f.zoom)/2
+	f.zy=f.y+(f.picdata:getHeight()-f.picdata:getHeight()*f.zoom)/2
 	f.hbx=computebox(0,f.picdata,f.zoom)
 end
 
@@ -89,6 +93,7 @@ function createfire(pcx,pcy,zoom)
 	ret.zoom=zoom
 	ret.pic=fireframes[1]
 	ret.picdata=fireframes[1]
+	--center 
 	ret.cx=pcx*pfw
 	ret.cy=pcy*pfh
 	-- print("")

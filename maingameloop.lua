@@ -75,6 +75,24 @@ function checkblockingcoll(tx,ty)
 	end
    end
   end
+  
+--walls
+ if curscreen.walls~=nil then
+	 for i,v in pairs(curscreen.walls) 
+	  do
+	   -- print("bhv")
+	   -- if v.blocking==true then
+		ret= coll(tx+ply.hbx.x,ty+ply.hbx.y,ply.hbx.w,ply.hbx.h,v.minx,v.miny,v.maxx-v.minx,v.maxy-v.miny)
+		if ret == true then
+		 print("BLOCKING WALL COLL")
+		 return true
+		end
+	   end
+	  -- end
+  end
+
+
+  
  return false
 
 end
@@ -91,17 +109,12 @@ function updategame()
  tickuprank()
  maintainglobrank()
  tickanimstep()
- -- checklvlup()
- --scroll faster with rank
- -- spawncounter=spawncounter+rank
- -- tickpanes()
- -- print(spawncounter)
- -- activation()
  
  
   overlayopacity=rankcounter/28*255
  
   if rankcounter>=28 then
+   initgameover()
    finalpic=gameover
    drawfunc=drawgameover
    updatefunc=updategameover
@@ -134,23 +147,38 @@ function updategame()
  
  xdir=0
  ydir=0
- if love.keyboard.isDown("left") or love.keyboard.isDown("a") then
-  tx=ply.x-plyspeed
+ 
+ 
+ 
+ j=polljoy()
+
+ firepressed = love.keyboard.isDown("space")
+ 
+ if love.keyboard.isDown("left") or love.keyboard.isDown("a") or j.left~=nil then
+  if firepressed==false then
+   tx=ply.x-plyspeed
+  end
   xdir=-1
   facing="l"
  end
- if love.keyboard.isDown("right") or love.keyboard.isDown("d") then
-  tx=ply.x+plyspeed
+ if love.keyboard.isDown("right") or love.keyboard.isDown("d") or j.right~=nil then
+  if firepressed==false then
+   tx=ply.x+plyspeed
+  end
   xdir=1
   facing="r"
  end
- if love.keyboard.isDown("up") or love.keyboard.isDown("w") then
-  ty=ply.y-plyspeed
+ if love.keyboard.isDown("up") or love.keyboard.isDown("w") or j.up~=nil then
+  if firepressed==false then
+   ty=ply.y-plyspeed
+  end
   ydir=-1
   facing="u"
  end
- if love.keyboard.isDown("down") or love.keyboard.isDown("s") then
-  ty=ply.y+plyspeed
+ if love.keyboard.isDown("down") or love.keyboard.isDown("s") or j.down~=nil then
+  if firepressed==false then
+   ty=ply.y+plyspeed
+  end
   ydir=1
   facing="d"
  end
@@ -160,7 +188,7 @@ function updategame()
   ydir=bydir
  end
   
- if love.keyboard.isDown("space") or fingertwoid~=nil then
+ if firepressed or fingertwoid~=nil or j.a~=nil then
   fireBullet(ply.x,ply.y+ply.h/2)
   -- print("fire")
  end
@@ -200,13 +228,23 @@ function updategame()
   fireinctimer=0
  end
  
- -- checkvictory() 
  if checkvictory() then
+  if levels[lvlglob.current+1]~=nil then
+   lvlglob.current=lvlglob.current+1
+   levels[lvlglob.current]()
+   return
+  else
+   gotovictory()
+   return
+  end
+ end
+end
+
+
+function gotovictory()
    finalpic=victory
+   initgameover()
    drawfunc=drawgameover
    updatefunc=updategameover
-  -- updatefunc=updatevictory
-  -- drawfunc=drawvictory
-  return
- end
+
 end

@@ -1,7 +1,9 @@
 
 
 function updatevictory()
- if love.keyboard.isDown("return") or fingeroneid~=nil  then
+ j=polljoy()
+
+ if love.keyboard.isDown("return") or fingeroneid~=nil or j.start~=nil  then
   drawfunc=drawtitle
   updatefunc=updatetitle
  end

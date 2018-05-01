@@ -5,6 +5,13 @@ fireframes={
 	loadfilter("fire/fire3.png")
 }
 
+bluefireframes={
+	loadfilter("bluefire/bf1.png"),
+	loadfilter("bluefire/bf2.png"),
+	loadfilter("bluefire/bf3.png")
+}
+
+
 function changezoomadjustcoords(f,z)
 
  	  f.zoom=f.zoom+z
@@ -15,7 +22,7 @@ function firebehavior(f,i)
 
 	rankcounter=rankcounter+livingfirebonus
 
-	f.pic=fireframes[animstep]
+	f.pic=f.frames[animstep]
 	if fireinctimer==1 then
 	 if f.zoom <=maxfirezoom then
       f.zoom=f.zoom+firezoominc
@@ -40,33 +47,35 @@ function firebehavior(f,i)
  	 table.remove(curscreen.gos,i)
 	 love.audio.play(extinction)
 	end
-	
-	-- if f.childinhib>0 then
-	 -- f.childinhib=f.childinhib-1
-	-- end
-	
-	-- if f.zoom>firestep and f.childinhib==0 and f.hasspawned== false then
-	 -- table.insert(
-	 -- curscreen.gos,
-	 -- createfire((f.cx-64)/pfw,f.cy/pfh,0.2)
-	 -- )
-	 -- table.insert(
-	 -- curscreen.gos,
-	 -- createfire((f.cx+64)/pfw,f.cy/pfh,0.2)
-	 -- )
-	 -- table.insert(
-	 -- curscreen.gos,
-	 -- createfire((f.cx)/pfw,(f.cy+64)/pfh,0.2)
-	 -- )
-	 -- table.insert(
-	 -- curscreen.gos,
-	 -- createfire((f.cx)/pfw,(f.cy-64)/pfh,0.2)
-	 -- )
-	 -- print("FIRE SPAWNED")
-	 -- f.childinhib=childinhibcycles
-	 -- f.hasspawned=true
-	-- end
-	
+
+	if f.spawn==true then
+		print('ticking blue fire')
+		if f.childinhib>0 then
+		 f.childinhib=f.childinhib-1
+		end
+		
+		if f.zoom>firestep and f.childinhib==0 and f.hasspawned== false then
+		 -- table.insert(
+		 -- curscreen.gos,
+		 -- createfire((f.cx-64)/pfw,f.cy/pfh,0.2)
+		 -- )
+		 -- table.insert(
+		 -- curscreen.gos,
+		 -- createfire((f.cx+64)/pfw,f.cy/pfh,0.2)
+		 -- )
+		 -- table.insert(
+		 -- curscreen.gos,
+		 -- createfire((f.cx)/pfw,(f.cy+64)/pfh,0.2)
+		 -- )
+		 table.insert(
+		 curscreen.gos,
+		 createfire((f.cx+f.xspawn*64)/pfw,(f.cy+f.yspawn*64)/pfh,0.2,bluefireframes,true)
+		 )
+		 print("FIRE SPAWNED")
+		 f.childinhib=childinhibcycles
+		 f.hasspawned=true
+		end
+	end
 end
 
 --handles zoom from center coordinates
@@ -81,21 +90,50 @@ function refreshxyfromzoom(f)
 end
 
 --takes percent of screen between 0 and 1
-function createfire(pcx,pcy,zoom)
+function createfire(pcx,pcy,zoom,frames,spawn)
 	if zoom==nil then
 	 zoom=0.5
 	end
 
+	 
+	
 	ret={}
+
+
+	if frames==nil then
+	 ret.frames=fireframes
+	else
+	 ret.frames=frames
+	end
 	ret.hasspawned=false
 	ret.childinhib=0
+
 	ret.blockvictory=true
 	ret.zoom=zoom
-	ret.pic=fireframes[1]
-	ret.picdata=fireframes[1]
+	
+	ret.pic=ret.frames[1]
+	ret.picdata=ret.frames[1]
 	--center 
 	ret.cx=pcx*pfw
 	ret.cy=pcy*pfh
+	
+	if spawn==true then
+		ret.spawn=true
+		--determining spawn direction by looking where screen center is
+		if pcx<0.5 then
+			ret.xspawn=1
+		else
+			ret.xspawn=-1
+		end
+		if pcy<0.5 then
+			ret.yspawn=1
+		else
+			ret.yspawn=-1
+		end
+
+	end
+	
+	
 	-- print("")
 	refreshxyfromzoom(ret)
 	ret.bfunc=firebehavior
@@ -103,3 +141,18 @@ function createfire(pcx,pcy,zoom)
 	return ret
 end
 
+
+--lets create from zazanim file analysis
+function createbfs(addhere,boxlist)
+
+	for i,v in ipairs(boxlist)
+	do
+		print("program create bf")
+		bfx=v.minx+(v.maxx-v.minx)/2
+		bfy=v.miny+(v.maxy-v.miny)/2
+		table.insert(
+			addhere,
+			createfire(bfx/pfw,bfy/pfh,1,bluefireframes,true)
+			)
+	end
+end

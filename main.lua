@@ -1,7 +1,66 @@
+fullscreen=false
+
+--BUG if you finish first screen of level 2,
+-- even if programatic fire, level victory
+
+
+--test wall coll
+--sliding hitbox with 4 points
+--radar
+
+--idea: blocks make fire splash, but holes in the ground don t stop it 
+--( modify level 1)
+
+--level 2 is about navigating holes in the ground
+
+
+--alternative blue fire that spawns
+--make blue fire spawn only one other blue fire
+--TODO spawn of blue fire is to slow, no spawn really,maybe nearer too
+
+
+--keep multi directional spawn for boss 1
+
+
+-- idea : fire that obscurs the view when flooded
+-- display wall boxes as opaque areas with shaders
+-- or from wall hitbox
+
+-- fire varient transparency and wobble ( shader !!!! )
+
+--boss that spawns fire devils ( stunned from fire devils; losing time ? )
+--message to notify of door blocked because danger level (boss)
+--boss level with alternative rule ( different rank )
+
+-- brotaru biff feedback
+-- animated intro where you enter building
+-- animated victory
+-- animated game over
+-- time out game over
+-- transition title screen ( down )
+-- suppress tuto
+-- time before push possible on title screen,
+-- with visual hint 5 ( fat finger pressing button)
+-- generally only one button for everything 
+-- score /time
+-- experiment with shaders on fires 
+
+-- BELOZ COMPO COMMENTS
 --jauge de fraicheur/ source de fraicheur
 
+--water transparency and wobble 
 
 --TODO new collhbs function that takes into account the special case of zoomed object (x, y are different)
+
+
+-- joys=love.joystick.getJoysticks()
+-- joy = nil 
+-- if joys ~= nil then
+
+ -- joy=joys[1]
+ -- print("joy connected")
+ -- print(joy)
+-- end
 
 --gplay variables
 firezoominc=0.1
@@ -11,13 +70,26 @@ waterzoominc=-0.1
 
 --zoom step to create new small fires
 firestep=1
-childinhibcycles=2000
+childinhibcycles=20
 
 fireinctimer=0
 fireincchg=120
 
 tickupref=45
 livingfirebonus=0.01
+-- is 1 2 or 3
+rank=1
+-- le rang change les comportements ennemis
+
+--how much each pickup influences counter
+-- rankstep=4
+--chaque pickup augmente le rang
+rankcounter=0
+seuil2=5
+seuil3=10
+seuil4=15
+seuil5=20
+maxrank=25
 
 
 waterreward=1
@@ -62,19 +134,6 @@ plyspeed=3
 score = 0
 multiplier=1
 
--- is 1 2 or 3
-rank=1
--- le rang change les comportements ennemis
-
---how much each pickup influences counter
-rankstep=4
---chaque pickup augmente le rang
-rankcounter=0
-seuil2=5
-seuil3=10
-seuil4=15
-seuil5=20
-maxrank=25
 
 
 
@@ -92,7 +151,6 @@ end
 
 function sizewindow()
 
-	
 	
   dw,dh=love.window.getDesktopDimensions()
   print(dh)
@@ -123,8 +181,19 @@ function sizewindow()
   -- scrsx=ww/cvsw
   -- scrsy=wh/cvsh
   love.window.setMode(ww,wh)
+  if fullscreen then
+   love.window.setFullscreen(true)
+   xrtoff= 256 --TODO
+  else
+   xrtoff=0
+  end
+  --calculating offsetx for full screen_coords
+  
+  
  end
 
+ 
+ 
 function rdrvscreen()
  love.graphics.setCanvas()
  -- love.graphics.rotate(-math.pi / 2)
@@ -138,10 +207,13 @@ function rdrvscreen()
   -- love.graphics.rotate(math.pi / 2)
   -- love.graphics.translate(-wh/2, -ww/2) 
  -- end
- love.graphics.draw(vscreen,0,0,0,scrsx,scrsy)
+ love.graphics.setShader(myShader) --draw something here
+ love.graphics.draw(vscreen,xrtoff,0,0,scrsx,scrsy)
+ love.graphics.setShader()
 end
 
 -- require("events")
+require("joypoller")
 require("loadfilter")
 require("death")
 require("fx")
@@ -162,9 +234,8 @@ require("plybullet")
 -- require("ghost")
 require("drawgame")
 -- require("boss")
-require("touchsupport")
+-- require("touchsupport")
 
-print(levels)
 print(currLvl)
 
 sizewindow()
@@ -181,6 +252,86 @@ print(lvl)
 
 
 function love.load()
+
+
+--from stack overflow
+-- vec2 onePixel = vec2(1.0, 1.0) / u_textureSize;
+-- gl_FragColor = (
+   -- texture2D(u_image, v_texCoord) +
+   -- texture2D(u_image, v_texCoord + vec2(onePixel.x, 0.0)) +
+   -- texture2D(u_image, v_texCoord + vec2(-onePixel.x, 0.0))) / 3.0;
+
+
+	-- scanline=love.graphics.newShader[[
+	-- extern vec2 textureSize;
+	-- extern vec2 inputSize;
+	-- extern vec2 outputSize;
+
+	-- const float base_brightness = 0.95;
+	-- const vec2 sine_comp = vec2(0.05, 0.15);
+
+	-- vec4 effect(vec4 vcolor, Image texture, vec2 texture_coords, vec2 pixel_coords)
+	-- {
+		-- vec2 omega = vec2(3.1415 * outputSize.x * textureSize.x / inputSize.x, 2.0 * 3.1415 * textureSize.y);
+		-- vec4 c11 = Texel(texture, texture_coords);
+
+		-- vec4 scanline = c11 * (base_brightness + dot(sine_comp * sin(texture_coords * omega), vec2(1.0)));
+		-- return clamp(vec4(scanline.rgb, c11.a), 0.0, 1.0);
+	-- }
+	-- ]]
+
+
+  scanline=love.graphics.newShader[[
+    vec4 effect( vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords ){
+      vec4 pixel = Texel(texture, texture_coords );//This is the current pixel color
+	  if( mod(screen_coords.y,2.0)<=0.5 ){
+       return pixel * color*0.8;
+	  
+	  }else{
+       return pixel * color*1.1;
+	  }
+    }
+  ]]
+
+
+  normal=love.graphics.newShader[[
+    vec4 effect( vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords ){
+      vec4 pixel = Texel(texture, texture_coords );//This is the current pixel color
+	  
+	  
+	  
+      return pixel * color;
+    }
+  ]]
+
+  
+
+  crt = love.graphics.newShader[[
+   extern vec2 distortionFactor;
+    extern vec2 scaleFactor;
+    extern number feather;
+    vec4 effect(vec4 color, Image tex, vec2 uv, vec2 px) {
+      // to barrel coordinates
+      uv = uv * 2.0 - vec2(1.0);
+      // distort
+      uv *= scaleFactor;
+      uv += (uv.yx*uv.yx) * uv * (distortionFactor - 1.0);
+      number mask = (1.0 - smoothstep(1.0-feather,1.0,abs(uv.x)))
+                  * (1.0 - smoothstep(1.0-feather,1.0,abs(uv.y)));
+      // to cartesian coordinates
+      uv = (uv + vec2(1.0)) / 2.0;
+      return color * Texel(tex, uv) * mask;
+    }
+	]]
+  
+  crt:send("scaleFactor",{1,1})
+  crt:send("feather",0.02)
+  crt:send("distortionFactor",{1.06, 1.065})
+  
+  -- myShader=crt
+  -- myShader=normal
+  myShader=scanline
+ initjoy()
 
  -- boss=love.graphics.newImage("boss.png")
  scoremask=love.graphics.newImage("scoremask.png")
@@ -231,12 +382,13 @@ function love.load()
         -- pixels[#pixels + 1] = pixel
     -- end
   -- end
+
  
  end
 
 x=100
 
-
+inittitle()
 drawfunc=drawtitle
 updatefunc=updatetitle
 

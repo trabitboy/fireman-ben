@@ -1,4 +1,22 @@
 
+function displayradar()
+ for j=0,(mzy-1)
+ do
+  for i=0,(mzx-1)
+  do
+   if lvl[mzx*j+i]~=nil then
+	if checkroom(mzx*j+i) then
+     love.graphics.setColor(255,0,0,255)
+	else
+     love.graphics.setColor(255,255,255,255)	
+	end
+    love.graphics.rectangle("fill",pfw+8+i*8+1,j*8+1,6,6)
+   end
+  end
+ end
+  love.graphics.setColor(255,255,255,255)
+end
+
 function displaygauge()
     xcur=ggx
 	ycur=cvsh-16
@@ -58,7 +76,16 @@ function drawhitbox(o)
   end
   love.graphics.setColor(255,255,255,255)
  end
+end
 
+--of curr screen
+function drawwallboxes()
+	if curscreen.walls~=nil then
+		for i,w in ipairs(curscreen.walls)
+		do
+		 love.graphics.rectangle("line",w.minx,w.miny,w.maxx-w.minx,w.maxy-w.miny)
+		end
+	end
 end
 
 function drawgame()
@@ -97,6 +124,7 @@ function drawgame()
  -- love.graphics.draw(fmanframes.up[1] ,pfx+px,pfy+py)
  
  love.graphics.draw(ppic,pfx+ply.x,pfy+ply.y)
+ drawhitbox(ply)
  
  for i,v in pairs(curscreen.gos) 
  do 
@@ -120,18 +148,23 @@ function drawgame()
     love.graphics.draw(v.pic,(pfx+v.x),(pfy+v.y))
    end
    --dbg
-   -- drawhitbox(v)
+   drawhitbox(v)
  -- love.graphics.print("Normal text", 50, 50)  
  end
  
  for i,v in pairs(bullets) 
  do 
+  love.graphics.setColor(255,255,255,200) 
   love.graphics.draw(v.pic,pfx+v.x,pfy+v.y)
+  love.graphics.setColor(255,255,255,255) 
  end
+ 
+ drawwallboxes()
  
  -- drawbaddiehealth()
  displayscore() 
  displaygauge()
+ displayradar()
  love.graphics.setColor(255,0,0,overlayopacity) 
  love.graphics.rectangle("fill",0,0,640,480)
  if overlayopacity>64 then

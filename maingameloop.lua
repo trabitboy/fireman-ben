@@ -60,6 +60,11 @@ function tickanimstep()
 	if animstep>3 then
 	 animstep=1
 	end
+	a5step=a5step+1
+	if a5step>5 then
+	 a5step=1
+	end
+
  end 
 end
 
@@ -98,6 +103,24 @@ function checkblockingcoll(tx,ty)
 end
 
 
+function updatelvlintro()
+ introtimer=introtimer-1
+ if introtimer==0 then
+  updatefunc=updategame
+ end
+end
+
+function updatelvloutro()
+ outrotimer=outrotimer-1
+ if outrotimer==0 then
+  -- updatefunc=updategame
+   lvlglob.current=lvlglob.current+1
+   levels[lvlglob.current]()
+   updatefunc=updatelvlintro
+   return
+
+ end
+end
 
 function updategame()
  -- feedbgifnecessary()
@@ -152,7 +175,7 @@ function updategame()
  
  j=polljoy()
 
- firepressed = love.keyboard.isDown("space")
+ firepressed = love.keyboard.isDown("space") or j.a==true
  
  if love.keyboard.isDown("left") or love.keyboard.isDown("a") or j.left~=nil then
   if firepressed==false then
@@ -230,9 +253,11 @@ function updategame()
  
  if checkvictory() then
   if levels[lvlglob.current+1]~=nil then
-   lvlglob.current=lvlglob.current+1
-   levels[lvlglob.current]()
-   return
+   outrotimer=120
+   updatefunc=updatelvloutro
+  -- lvlglob.current=lvlglob.current+1
+   -- levels[lvlglob.current]()
+   -- return
   else
    gotovictory()
    return

@@ -1,38 +1,58 @@
 twoaw={
-{
-minx=369,
-miny=9,
-maxx=506,
-maxy=62,
-},
-{
-minx=44,
-miny=11,
-maxx=185,
-maxy=65,
-},
-{
-minx=0,
-miny=81,
-maxx=52,
-maxy=390,
-},
-{
-minx=487,
-miny=92,
-maxx=543,
-maxy=406,
-},
-{
-minx=28,
-miny=392,
-maxx=203,
-maxy=447,
-},
-{
-minx=378,
-miny=402,
-maxx=502,
-maxy=455,
-},
+ {
+ minx=369,
+ miny=9,
+ maxx=506,
+ maxy=62,
+ },
+ {
+ minx=44,
+ miny=11,
+ maxx=185,
+ maxy=65,
+ },
+ {
+ minx=0,
+ miny=81,
+ maxx=52,
+ maxy=390,
+ },
+ {
+ minx=487,
+ miny=92,
+ maxx=543,
+ maxy=406,
+ },
+ {
+ minx=28,
+ miny=392,
+ maxx=203,
+ maxy=447,
+ },
+ {
+ minx=378,
+ miny=402,
+ maxx=502,
+ maxy=455,
+ },
+}
+twoawbfs={
+ {
+ minx=105,
+ miny=116,
+ maxx=125,
+ maxy=140,
+ },
+ {
+ minx=418,
+ miny=216,
+ maxx=434,
+ maxy=236,
+ },
+ {
+ minx=118,
+ miny=317,
+ maxx=134,
+ maxy=340,
+ },
 }

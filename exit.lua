@@ -25,10 +25,10 @@ end
 function calculatenav(e)
 
 	local spawn={
-	 left={x=gap,y=pfh/2},
-	 right={x=pfw-gap-ply.w,y=pfh/2},
-	 up={x=pfw/2,y=gap},
-	 down={x=pfw/2,y=pfh-gap-ply.h}
+	 left={x=gap,y=pfh/2-ply.h/2},
+	 right={x=pfw-gap-ply.w,y=pfh/2-ply.h/2},
+	 up={x=pfw/2-ply.w/2,y=gap},
+	 down={x=pfw/2-ply.w/2,y=pfh-gap-ply.h}
 
 	}
 

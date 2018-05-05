@@ -44,6 +44,24 @@ threebw={
 }
 threebwbfs={
  {
+ minx=410,
+ miny=111,
+ maxx=430,
+ maxy=132,
+ },
+ {
+ minx=264,
+ miny=114,
+ maxx=281,
+ maxy=131,
+ },
+ {
+ minx=98,
+ miny=116,
+ maxx=115,
+ maxy=133,
+ },
+ {
  minx=413,
  miny=324,
  maxx=432,

@@ -171,6 +171,24 @@ function drawgame()
   love.graphics.setColor(255,255,255,overlayopacity-64) 
   love.graphics.draw(deathframes[animstep],0,0)
  end
+ 
+ 
+ if updatefunc==updatelvlintro then
+  love.graphics.setColor(0,0,0,255) 
+  love.graphics.rectangle("fill",300,200,100,100)
+  love.graphics.setColor(255,255,255,255) 
+  love.graphics.print(name,310,210)
+ end
+
+ if updatefunc==updatelvloutro then
+  love.graphics.setColor(0,0,0,255) 
+  love.graphics.rectangle("fill",300,200,100,100)
+  love.graphics.setColor(255,255,255,255) 
+  love.graphics.print('well done !',310,210)
+ end
+
+
+ 
  love.graphics.setColor(255,255,255,255) 
  rdrvscreen()
 end

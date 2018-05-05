@@ -42,8 +42,8 @@ function startgame(lnum)
   
   
   drawfunc=drawgame
-  updatefunc=updategame
-
+  -- updatefunc=updategame
+  updatefunc=updatelvlintro
 
 end
 
@@ -72,6 +72,11 @@ function updatetuto()
 	 if love.keyboard.isDown("2") then
 		startgame(2)
 	 end
+
+	 if love.keyboard.isDown("3") then
+		startgame(3)
+	 end
+	 
  end
 end
 

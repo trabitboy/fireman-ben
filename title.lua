@@ -37,6 +37,13 @@ end
 function updatetitle()
  tickanimstep()
 
+ if love.keyboard.isDown("v") then
+	initvideo()
+	updatefunc=updatevideo
+	drawfunc=drawvideo
+	return
+ end
+ 
  if titlewait>0 then
 	titlewait=titlewait-1
  else

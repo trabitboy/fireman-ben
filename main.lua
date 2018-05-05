@@ -1,5 +1,36 @@
 fullscreen=false
 
+--video doesn seem to play in video state ? (freeze frame )
+
+--lvl 1 learn fire
+
+--boss 1 do not get touched
+
+--lvl 2 combat spreading fire
+
+-- lvl 3 prioritize target ?
+
+
+-- three lives to restart at current level? score reset ?
+-- video on lvl success ?
+
+-- lvl 2 three b to three a is blocking ( programmatic check ? )
+-- first boss death
+-- lvl 1 walls
+--turn boxes in holes in lvl1
+-- make box be pushable and stop water
+-- make box chain fire ?
+-- make small boxes instead of holes ?
+-- level intro
+-- level outro
+-- high score / table
+-- video !!!!!!
+
+
+--flare doesnt show even if fx triggered
+-- screen shake and flare on all fires when rank up explosion ?
+-- screen shake and flare when you touch fire ?
+
 --BUG if you finish first screen of level 2,
 -- even if programatic fire, level victory
 
@@ -62,28 +93,10 @@ fullscreen=false
  -- print(joy)
 -- end
 
---gplay variables
-firezoominc=0.1
-minfirezoom=0.2
-maxfirezoom=3
-waterzoominc=-0.1
-
---zoom step to create new small fires
-firestep=1
-childinhibcycles=20
-
-fireinctimer=0
-fireincchg=120
-
-tickupref=45
-livingfirebonus=0.01
 -- is 1 2 or 3
 rank=1
 -- le rang change les comportements ennemis
 
---how much each pickup influences counter
--- rankstep=4
---chaque pickup augmente le rang
 rankcounter=0
 seuil2=5
 seuil3=10
@@ -91,8 +104,6 @@ seuil4=15
 seuil5=20
 maxrank=25
 
-
-waterreward=1
 
 --can be u d l r
 facing="d"
@@ -109,6 +120,7 @@ function tbllngth(T)
 end
 
 animstep=1
+a5step=1
 animclk=0
 animchge=10
 
@@ -213,8 +225,11 @@ function rdrvscreen()
 end
 
 -- require("events")
+require("video")
 require("joypoller")
 require("loadfilter")
+require("devil")
+require("devilbarrel")
 require("death")
 require("fx")
 require("fireman")
@@ -253,6 +268,7 @@ print(lvl)
 
 function love.load()
 
+ video = love.graphics.newVideo( 'test.ogv' )
 
 --from stack overflow
 -- vec2 onePixel = vec2(1.0, 1.0) / u_textureSize;

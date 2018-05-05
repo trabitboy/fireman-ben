@@ -18,18 +18,8 @@ function changezoomadjustcoords(f,z)
 	  refreshxyfromzoom(f)
 end
 
-function firebehavior(f,i)
 
-	rankcounter=rankcounter+livingfirebonus
-
-	f.pic=f.frames[animstep]
-	if fireinctimer==1 then
-	 if f.zoom <=maxfirezoom then
-      f.zoom=f.zoom+firezoominc
-  	  refreshxyfromzoom(f)
-	 end
-	end
-	
+function wateronburning(i,f)
 	--collision water with fire 
 	for j,b in pairs(bullets) 
 	do
@@ -46,7 +36,44 @@ function firebehavior(f,i)
 	 table.insert(curscreen.gos,createfx(f.cx/pfw,f.cy/pfh,smokeframes))
  	 table.remove(curscreen.gos,i)
 	 love.audio.play(extinction)
+	 return true --to chain further
 	end
+
+
+end
+
+
+function firebehavior(f,i)
+
+	rankcounter=rankcounter+livingfirebonus
+
+	f.pic=f.frames[animstep]
+	if fireinctimer==1 then
+	 if f.zoom <=maxfirezoom then
+      f.zoom=f.zoom+firezoominc
+  	  refreshxyfromzoom(f)
+	 end
+	end
+	
+	
+	wateronburning(i,f)
+	-- --collision water with fire 
+	-- for j,b in pairs(bullets) 
+	-- do
+	 -- if(collhbs(b.x,b.y,b.hbx,f.zx,f.zy,f.hbx)) then
+	  -- table.remove(bullets,j)
+	  -- if rankcounter>0 then
+		-- rankcounter=rankcounter-waterreward
+	  -- end
+	  -- changezoomadjustcoords(f,waterzoominc )
+	 -- end
+	-- end
+	
+	-- if f.zoom<=minfirezoom then
+	 -- table.insert(curscreen.gos,createfx(f.cx/pfw,f.cy/pfh,smokeframes))
+ 	 -- table.remove(curscreen.gos,i)
+	 -- love.audio.play(extinction)
+	-- end
 
 	if f.spawn==true then
 		print('ticking blue fire')
@@ -69,10 +96,12 @@ function firebehavior(f,i)
 		 -- )
 		 table.insert(
 		 curscreen.gos,
-		 createfire((f.cx+f.xspawn*64)/pfw,(f.cy+f.yspawn*64)/pfh,0.2,bluefireframes,true)
+		 createfire((f.cx+f.xspawn*32)/pfw,(f.cy+f.yspawn*32)/pfh,0.4,bluefireframes,true)
 		 )
 		 print("FIRE SPAWNED")
 		 f.childinhib=childinhibcycles
+		 
+		 -- let's not block respawn of blue fire
 		 f.hasspawned=true
 		end
 	end
@@ -95,8 +124,6 @@ function createfire(pcx,pcy,zoom,frames,spawn)
 	 zoom=0.5
 	end
 
-	 
-	
 	ret={}
 
 
@@ -152,7 +179,7 @@ function createbfs(addhere,boxlist)
 		bfy=v.miny+(v.maxy-v.miny)/2
 		table.insert(
 			addhere,
-			createfire(bfx/pfw,bfy/pfh,1,bluefireframes,true)
+			createfire(bfx/pfw,bfy/pfh,0.4,bluefireframes,true)
 			)
 	end
 end

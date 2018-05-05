@@ -10,14 +10,14 @@ from queue import *
 
 ##pics=["walltest.bmp"]
 pics=[
-##    {'p':"1aw.png",'o':'oneaw'},
-##    {'p':"1bw.png",'o':'onebw'},
-##    {'p':"1cw.png",'o':'onecw'},
-##    {'p':"2aw.png",'o':'twoaw'},
-##    {'p':"2cw.png",'o':'twocw'},
+    {'p':"1aw.png",'o':'oneaw'},
+    {'p':"1bw.png",'o':'onebw'},
+    {'p':"1cw.png",'o':'onecw'},
+    {'p':"2aw.png",'o':'twoaw'},
+    {'p':"2cw.png",'o':'twocw'},
     {'p':"3aw.png",'o':'threeaw'},
     {'p':"3bw.png",'o':'threebw'},
-##    {'p':"3cw.png",'o':'threecw'},
+    {'p':"3cw.png",'o':'threecw'},
     
     ]
 ##cvsw=640

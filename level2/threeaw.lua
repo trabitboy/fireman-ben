@@ -55,4 +55,22 @@ threeawbfs={
  maxx=35,
  maxy=345,
  },
+ {
+ minx=428,
+ miny=416,
+ maxx=444,
+ maxy=436,
+ },
+ {
+ minx=319,
+ miny=423,
+ maxx=339,
+ maxy=447,
+ },
+ {
+ minx=195,
+ miny=427,
+ maxx=213,
+ maxy=450,
+ },
 }

@@ -195,13 +195,13 @@ function initlvl1()
  
  
  
- -- cx=0
- -- cy=0
- -- curscreen=onea
+ cx=0
+ cy=0
+ curscreen=onea
 
- cx=1
- cy=3
- curscreen=onee
+ -- cx=1
+ -- cy=3
+ -- curscreen=onee
  
  love.audio.play(ambiance)
 end
@@ -229,6 +229,7 @@ function boss1gplay()
 	tickupref=45
 	livingfirebonus=0.01
 
+	devilhit=0.01
 end
 
 -- boss1=
@@ -511,9 +512,83 @@ function initlvl2()
  love.audio.play(ambiance)
 end
 
+function boss2gplay()
+	--gplay variables
+	firezoominc=0.1
+	minfirezoom=0.2
+	maxfirezoom=3
+	--amount zoom of fire is decreased on fire hit
+	waterzoominc=-0.3
+	--rank decrease when water splashes fire
+	waterreward=0.4
+
+	--zoom step to create new small fires
+	firestep=0.5
+	childinhibcycles=180
+
+	fireinctimer=0
+	fireincchg=120
+
+	--number of cycles before automatic fire update
+	tickupref=45
+	livingfirebonus=0.01
+
+	devilhit=1
+end
+
+-- boss2=
+function initboss2()
+  name='boss 2'
+  -- dfltgplay() 
+  boss2gplay()  
+  globinit()
+  
+  ply.x=pfw/2
+  ply.y=pfh/8
+ bosstwo={
+	bg=love.graphics.newImage("level1/onef.png"),
+	gos={
+		-- createfx(1/2,1/2,smokeframes),
+		-- createbox((1/4),(2/7)),
+		-- createbox((3/4),(2/7)),
+		-- createbox((1/4),(3/7)),
+		-- createbox((3/4),(3/7)),
+		-- createfire((1/5),(5/7)),
+		-- createfire((4/5),(5/7)),
+		-- createdevil(0.5,0.3,-1,-1),
+		
+--		createdbarrel(0.5,0.7),
+
+		-- createbox((1/2),(1/4)),
+		-- createexit((1/2),(15/16)),
+		createbigdevil(0.1,0.5,-1,"right"),
+		createbigdevil(0.9,0.5,1,"left"),
+		
+	}
+ }
+ 
+
+ mzx=1
+ mzy=1
+ 
+ lvl={}
+ -- maxslot=2*4
+ -- for i=0,8
+ -- do
+	-- lvl[i]=nil
+ -- end
+ 
+ lvl[0]=bosstwo
+
+ cx=0
+ cy=0
+ curscreen=bosstwo
+ 
+ love.audio.play(ambiance)
+end
 
 
-levels={initlvl1,initboss1,initlvl2}
+levels={initlvl1,initboss1,initlvl2,initboss2}
 
 
 

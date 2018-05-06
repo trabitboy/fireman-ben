@@ -40,7 +40,7 @@ function devsecondbhv(b,i)
 		table.insert(curscreen.gos,createfx(b.cx/pfw,b.cy/pfh,flareframes))
 		table.remove(curscreen.gos,i)
 		table.insert(curscreen.gos,createfire(b.cx/pfw,b.cy/pfh))
-
+		rankcounter=rankcounter+devilhit
 	end
 	
 	chain=wateronburning(i,b)

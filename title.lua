@@ -29,7 +29,7 @@ function drawtitle()
  
  
  
- love.graphics.print("v 1.3 coll fix",0,0)
+ love.graphics.print("v 1.4 brotaru2",0,0)
 
  
  -- love.graphics.print("Last gamepad button pressed: "..lastbutton, 10, 10)

@@ -77,6 +77,10 @@ function updatetuto()
 		startgame(3)
 	 end
 	 
+	 if love.keyboard.isDown("4") then
+		startgame(4)
+	 end
+	 
  end
 end
 
@@ -86,6 +90,9 @@ function drawtuto()
  love.graphics.setCanvas(vscreen)
  love.graphics.clear()
  love.graphics.draw(intro.bg,0,0)
+  love.graphics.setColor(255,255,255,128) 
+ love.graphics.draw(deathframes[animstep],0,-200)
+ love.graphics.setColor(255,255,255,255) 
  love.graphics.draw(intro.truck[truckstep],0,0)
  -- love.graphics.push()
  -- love.graphics.scale(2, 2)   -- reduce everything by 50% in both X and Y coordinates

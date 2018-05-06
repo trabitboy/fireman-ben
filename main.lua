@@ -1,4 +1,18 @@
-fullscreen=false
+fullscreen=true
+displayboxs=false
+
+shader=true
+fit=true
+
+
+--TRAIILERS
+--VIES
+--HIGH SCORES (time of completion)
+
+--radar
+
+--lives screen with x
+--animated fire on intro with truck
 
 -- water splash unsatisfying
 -- wrong start of first lev (room)
@@ -12,14 +26,12 @@ fullscreen=false
 
 -- make box pushable 
 
---animated fire on intro with truck
 -- animated victory
 -- animated game over
 
 --test wall coll
 --sliding hitbox with 4 points
 --( you tend to stick to walls )
---radar
 
 -- screen shake and flare on all fires when rank up explosion ?
 
@@ -186,15 +198,23 @@ function sizewindow()
    -- scrsx=wh/cvsw
    -- scrsy=ww/cvsh
   -- else
-   scrsx=ww/cvsw
-   scrsy=wh/cvsh  
   -- end
    -- ww=480
   -- wh=600
   
   -- scrsx=ww/cvsw
   -- scrsy=wh/cvsh
-  love.window.setMode(ww,wh)
+
+  if fit then
+   scrsx=ww/cvsw
+   scrsy=wh/cvsh  
+   love.window.setMode(ww,wh)
+  else
+   scrsx=1
+   scrsy=1
+   love.window.setMode(cvsw,cvsh)
+  end
+  
   if fullscreen then
    love.window.setFullscreen(true)
    xrtoff= 256 --TODO
@@ -221,7 +241,9 @@ function rdrvscreen()
   -- love.graphics.rotate(math.pi / 2)
   -- love.graphics.translate(-wh/2, -ww/2) 
  -- end
+ if shader then
  love.graphics.setShader(myShader) --draw something here
+ end
  love.graphics.draw(vscreen,xrtoff,0,0,scrsx,scrsy)
  love.graphics.setShader()
 end
@@ -230,6 +252,7 @@ end
 require("video")
 require("joypoller")
 require("loadfilter")
+require("bigdevil")
 require("devil")
 require("devilbarrel")
 require("death")

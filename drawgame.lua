@@ -1,5 +1,6 @@
 
 function displayradar()
+ love.graphics.print ("FIRE RADAR:",pfw+4,8)
  for j=0,(mzy-1)
  do
   for i=0,(mzx-1)
@@ -10,7 +11,7 @@ function displayradar()
 	else
      love.graphics.setColor(255,255,255,255)	
 	end
-    love.graphics.rectangle("fill",pfw+8+i*8+1,j*8+1,6,6)
+    love.graphics.rectangle("fill",pfw+8+i*8+1,32+j*8+1,6,6)
    end
   end
  end
@@ -124,7 +125,9 @@ function drawgame()
  -- love.graphics.draw(fmanframes.up[1] ,pfx+px,pfy+py)
  
  love.graphics.draw(ppic,pfx+ply.x,pfy+ply.y)
- drawhitbox(ply)
+ if displayboxs then
+  drawhitbox(ply)
+ end
  
  for i,v in pairs(curscreen.gos) 
  do 
@@ -148,7 +151,9 @@ function drawgame()
     love.graphics.draw(v.pic,(pfx+v.x),(pfy+v.y))
    end
    --dbg
-   drawhitbox(v)
+   if displayboxs then
+    drawhitbox(v)
+   end
  -- love.graphics.print("Normal text", 50, 50)  
  end
  
@@ -159,8 +164,9 @@ function drawgame()
   love.graphics.setColor(255,255,255,255) 
  end
  
- drawwallboxes()
- 
+ if displayboxs then
+  drawwallboxes()
+ end
  -- drawbaddiehealth()
  displayscore() 
  displaygauge()
@@ -175,16 +181,16 @@ function drawgame()
  
  if updatefunc==updatelvlintro then
   love.graphics.setColor(0,0,0,255) 
-  love.graphics.rectangle("fill",300,200,100,100)
+  love.graphics.rectangle("fill",200,200,100,100)
   love.graphics.setColor(255,255,255,255) 
-  love.graphics.print(name,310,210)
+  love.graphics.print(name,210,210)
  end
 
  if updatefunc==updatelvloutro then
   love.graphics.setColor(0,0,0,255) 
-  love.graphics.rectangle("fill",300,200,100,100)
+  love.graphics.rectangle("fill",200,200,100,100)
   love.graphics.setColor(255,255,255,255) 
-  love.graphics.print('well done !',310,210)
+  love.graphics.print('well done !',210,210)
  end
 
 

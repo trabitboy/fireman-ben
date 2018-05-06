@@ -37,4 +37,28 @@ onebw={
  },
 }
 onebwbfs={
+ {
+ minx=417,
+ miny=123,
+ maxx=432,
+ maxy=138,
+ },
+ {
+ minx=120,
+ miny=130,
+ maxx=135,
+ maxy=145,
+ },
+ {
+ minx=420,
+ miny=330,
+ maxx=435,
+ maxy=345,
+ },
+ {
+ minx=112,
+ miny=334,
+ maxx=127,
+ maxy=350,
+ },
 }

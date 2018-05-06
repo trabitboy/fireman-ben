@@ -1,6 +1,30 @@
 fullscreen=false
 
---video doesn seem to play in video state ? (freeze frame )
+-- water splash unsatisfying
+-- wrong start of first lev (room)
+-- first boss death,anim
+-- unwalkable first boss
+-- keep multi directional spawn for boss 1
+
+-- more fluid growth and progression of blue fire
+
+--record trailer
+
+-- make box pushable 
+
+--animated fire on intro with truck
+-- animated victory
+-- animated game over
+
+--test wall coll
+--sliding hitbox with 4 points
+--( you tend to stick to walls )
+--radar
+
+-- screen shake and flare on all fires when rank up explosion ?
+
+
+--screen shake when flare
 
 --lvl 1 learn fire
 
@@ -14,30 +38,15 @@ fullscreen=false
 -- three lives to restart at current level? score reset ?
 -- video on lvl success ?
 
--- lvl 2 three b to three a is blocking ( programmatic check ? )
--- first boss death
--- lvl 1 walls
---turn boxes in holes in lvl1
--- make box be pushable and stop water
 -- make box chain fire ?
 -- make small boxes instead of holes ?
--- level intro
--- level outro
 -- high score / table
 -- video !!!!!!
 
 
---flare doesnt show even if fx triggered
--- screen shake and flare on all fires when rank up explosion ?
--- screen shake and flare when you touch fire ?
-
---BUG if you finish first screen of level 2,
--- even if programatic fire, level victory
 
 
---test wall coll
---sliding hitbox with 4 points
---radar
+
 
 --idea: blocks make fire splash, but holes in the ground don t stop it 
 --( modify level 1)
@@ -45,12 +54,8 @@ fullscreen=false
 --level 2 is about navigating holes in the ground
 
 
---alternative blue fire that spawns
---make blue fire spawn only one other blue fire
---TODO spawn of blue fire is to slow, no spawn really,maybe nearer too
 
 
---keep multi directional spawn for boss 1
 
 
 -- idea : fire that obscurs the view when flooded
@@ -64,9 +69,6 @@ fullscreen=false
 --boss level with alternative rule ( different rank )
 
 -- brotaru biff feedback
--- animated intro where you enter building
--- animated victory
--- animated game over
 -- time out game over
 -- transition title screen ( down )
 -- suppress tuto

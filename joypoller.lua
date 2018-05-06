@@ -46,9 +46,37 @@ function polljoy()
 	-- end
 
 	if joystick:isGamepadDown("a") then
-	 -- print("start")
-	 ret.a=true
+	 print("a")
+	 ret.mainfire=true
 	end
+	if joystick:isGamepadDown("b") then
+	 print("b")
+	 ret.mainfire=true
+	end
+	if joystick:isGamepadDown("x") then
+	 print("x")
+	 ret.mainfire=true
+	end
+	if joystick:isGamepadDown("y") then
+	 print("y")
+	 ret.mainfire=true
+	end
+	if joystick:isGamepadDown("leftshoulder") then
+	 print("leftshoulder")
+	 ret.mainfire=true
+	end
+	-- if joystick:isGamepadDown("leftbumper") then
+	 -- print("left bumper")
+	 -- ret.mainfire=true
+	-- end
+	if joystick:isGamepadDown("rightshoulder") then
+	 print("right shoulder")
+	 ret.mainfire=true
+	end
+	-- if joystick:isGamepadDown("rightbumper") then
+	 -- print("right bumper")
+	 -- ret.mainfire=true
+	-- end
 
 	
 	if joystick:isGamepadDown("start") then

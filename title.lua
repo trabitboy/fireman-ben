@@ -9,7 +9,7 @@
 
 function inittitle()
 	titlewait=60
-
+	trailerwait=600
 end
 
 function drawtitle()
@@ -26,6 +26,8 @@ function drawtitle()
 	-- print(animstep)
 	love.graphics.draw(pbframes[animstep],cvsw-64,cvsh-64)
  end
+ 
+ 
  
  love.graphics.print("v 1.3 coll fix",0,0)
 
@@ -48,12 +50,23 @@ function updatetitle()
 	titlewait=titlewait-1
  else
 	j=polljoy()
-	 if love.keyboard.isDown("space") or fingeroneid~=nil or j.a~=nil then
+	 if love.keyboard.isDown("space") or fingeroneid~=nil or j.mainfire~=nil then
 	 inittuto()
 	  drawfunc=drawtuto
 	  updatefunc=updatetuto
+	  return
 	 end
 	
  end
-	
+
+ if trailerwait>0 then
+	trailerwait=trailerwait-1
+ else
+	initvideo()
+	updatefunc=updatevideo
+	drawfunc=drawvideo
+	return
+  
+ end
+ 
 end

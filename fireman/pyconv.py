@@ -10,7 +10,8 @@ colorkey=pygame.Color(10,200,200,255)
 
 target=[
         {"name":"up","area":pygame.Rect(47,80,225-47,349-80)  },
-        {"name":"down","area":pygame.Rect(232,80,178,349-80)  },
+##        {"name":"down","area":pygame.Rect(232,80,178,349-80)  },
+        {"name":"down","area":pygame.Rect(222,80,178,349-80)  },
         {"name":"right","area":pygame.Rect(398,80,178,349-80)  },
         {"name":"left","area":pygame.Rect(398,80,178,349-80) ,"invert":True }
         

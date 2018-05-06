@@ -37,4 +37,40 @@ oneaw={
  },
 }
 oneawbfs={
+ {
+ minx=95,
+ miny=120,
+ maxx=110,
+ maxy=135,
+ },
+ {
+ minx=140,
+ miny=120,
+ maxx=155,
+ maxy=135,
+ },
+ {
+ minx=143,
+ miny=154,
+ maxx=158,
+ maxy=169,
+ },
+ {
+ minx=85,
+ miny=157,
+ maxx=100,
+ maxy=172,
+ },
+ {
+ minx=140,
+ miny=195,
+ maxx=155,
+ maxy=210,
+ },
+ {
+ minx=90,
+ miny=202,
+ maxx=105,
+ maxy=217,
+ },
 }

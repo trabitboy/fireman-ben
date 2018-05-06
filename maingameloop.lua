@@ -175,7 +175,7 @@ function updategame()
  
  j=polljoy()
 
- firepressed = love.keyboard.isDown("space") or j.a==true
+ firepressed = love.keyboard.isDown("space") or j.mainfire==true
  
  if love.keyboard.isDown("left") or love.keyboard.isDown("a") or j.left~=nil then
   if firepressed==false then
@@ -211,7 +211,7 @@ function updategame()
   ydir=bydir
  end
   
- if firepressed or fingertwoid~=nil or j.a~=nil then
+ if firepressed or fingertwoid~=nil or j.mainfire~=nil then
   fireBullet(ply.x,ply.y+ply.h/2)
   -- print("fire")
  end

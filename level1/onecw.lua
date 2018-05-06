@@ -1,0 +1,40 @@
+l1onecw={
+ {
+ minx=96,
+ miny=10,
+ maxx=456,
+ maxy=91,
+ },
+ {
+ minx=3,
+ miny=52,
+ maxx=78,
+ maxy=162,
+ },
+ {
+ minx=453,
+ miny=92,
+ maxx=535,
+ maxy=367,
+ },
+ {
+ minx=9,
+ miny=274,
+ maxx=88,
+ maxy=372,
+ },
+ {
+ minx=59,
+ miny=382,
+ maxx=197,
+ maxy=459,
+ },
+ {
+ minx=373,
+ miny=386,
+ maxx=494,
+ maxy=457,
+ },
+}
+l1onecwbfs={
+}

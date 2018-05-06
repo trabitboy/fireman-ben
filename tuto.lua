@@ -65,7 +65,7 @@ function updatetuto()
  
 	 j=polljoy()
 	 
-	 if love.keyboard.isDown("space")  or j.start~=nil  then
+	 if love.keyboard.isDown("space")  or j.mainfire~=nil  then
 		startgame(1)
 	 end
 	 

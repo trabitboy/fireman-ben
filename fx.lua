@@ -1,4 +1,11 @@
 
+splashframes={
+	loadfilter("splash/s1.png"),
+	loadfilter("splash/s2.png"),
+	loadfilter("splash/s3.png"),
+	loadfilter("splash/s4.png"),
+}
+
 smokeframes={
 	loadfilter("smoke/smoke1.png"),
 	loadfilter("smoke/smoke2.png"),

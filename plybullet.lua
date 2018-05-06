@@ -25,6 +25,8 @@ function bulletBehavior(me,idx)
  me.x=me.x+me.vx*bulletspeed
  me.y=me.y+me.vy*bulletspeed
 
+ 
+ updatecxcy(me)
  -- for i,v in pairs(gameobjs) 
  -- do 
   -- if v.hp~=nil then
@@ -52,6 +54,13 @@ end
 --not to generate constant stream
 bulletinhib=0
 
+function updatecxcy(b)
+ 	 b.cx=b.x+b.picdata:getWidth()/2
+	 b.cy=b.y+b.picdata:getHeight()/2
+
+
+end
+
 function fireBullet(x,y)
  if bulletinhib==0 then
 
@@ -74,10 +83,14 @@ function fireBullet(x,y)
 	 b.x=x-b.picdata:getWidth()/2+ply.w/2
 	 b.y=y-b.picdata:getHeight()/2
 	 b.hbx=computebox(0,b.picdata,1)
+	 
+	 b.boxhbx=computebox(15,b.picdata,1)
+	 
 	 b.behavior=bulletBehavior
 	 table.insert(bullets,b)
 	 love.audio.rewind(piou)
 	 love.audio.play(piou)
 	 bulletinhib=bulletinhibref
+	 updatecxcy(b)
  end
 end

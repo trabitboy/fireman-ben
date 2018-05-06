@@ -4,7 +4,21 @@ boxframes={
 }
 
 function bbhv(b,i)
+
+	--box cancels water
+	for j,w in ipairs(bullets)
+	do
+		if collhbs(w.x,w.y,w.boxhbx,b.x,b.y,b.hbx) then
+			print("coll water box !!!!!!!!!!!!!!")
+			-- table.insert(curscreen.gos,createfx(f.cx/pfw,f.cy/pfh,flareframes))
+			table.remove(bullets,j)
+			table.insert(curscreen.gos,createfx(w.cx/pfw,w.cy/pfh,splashframes))
+			
+			--TODO play spash sound?
+		end
+	 
 	
+	end
 end
 
 

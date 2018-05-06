@@ -5,15 +5,17 @@ from pygame.locals import *
 
 pics=[
     "db1ts.png",
+    "db2ts.png",
+    "db3ts.png",
     ]
 
 colorkey=pygame.Color(10,200,200,255)
 
 
-x1=142
-y1=166
-x2=515
-y2=478
+x1=135
+y1=20
+x2=560
+y2=480
 w=x2-x1
 h=y2-y1
 
@@ -28,7 +30,7 @@ target=[
 
 ##tgtwidth=64
 ##tgtheight=int(tgtwidth*h/w)
-tgtwidth=160
+tgtwidth=256
 tgtheight=int(tgtwidth*h/w)
 
 pygame.init()

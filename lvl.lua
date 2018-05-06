@@ -44,6 +44,7 @@ function dfltgplay()
 
 end
 
+
 -- lvl1=
 function initlvl1()
   name="floor 1"
@@ -53,6 +54,7 @@ function initlvl1()
   
   ply.x=pfw/2
   ply.y=pfh/5
+  require("level1.oneaw")
  onea={
 	bg=love.graphics.newImage("level1/onea.png"),
 	gos={
@@ -65,9 +67,11 @@ function initlvl1()
 		createfire((4/5),(5/7)),
 		-- createbox((1/2),(1/4)),
 		createexit((1/2),(15/16)),
-	}
+	},
+	walls=l1oneaw
  }
  
+  require("level1.onebw")
 
  oneb={
 	bg=love.graphics.newImage("level1/oneb.png"),
@@ -82,8 +86,12 @@ function initlvl1()
 		-- createfire((9/10),(2/3)),
 		createexit((15/16),(1/2)),
 		createexit((1/2),(0)),
-	}
+	},
+	walls=l1onebw
  }
+ 
+   require("level1.onecw")
+
  onec={
 	bg=love.graphics.newImage("level1/onec.png"),
 	gos={
@@ -98,8 +106,12 @@ function initlvl1()
 		createfire((3/4),(7/8)),
 		createexit((1/2),(15/16)),
 		createexit((0),(1/2)),
-	}
+	},
+	walls=l1onecw
  }
+ 
+   require("level1.onedw")
+
  oned={
 	bg=love.graphics.newImage("level1/oned.png"),
 	gos={
@@ -115,42 +127,43 @@ function initlvl1()
 		createexit((1/2),0),
 		createexit((1/2),1),
 		
-	}
+	},
+	walls=l1onedw
  }
+ 
+   require("level1.oneew")
+ 
  onee={
 	bg=love.graphics.newImage("level1/onee.png"),
 	gos={
-		-- createfire((6/8),(1/2)),
-		-- createbox((1/2),(1/4)),
-		-- createfire((6/8),(1/2)),
-		-- createfire((6/8),(1/2)),
-		-- createfire((6/8),(1/2)),
-		createbox((3/7),(1/3)+(1/10)),
-		createbox((5/7),(1/3)+(1/10)),
-		createbox((4/7),(1/3)+(1/10)),
+		-- createbox((3/7),(1/3)+(1/10)),
+		-- createbox((5/7),(1/3)+(1/10)),
+		-- createbox((4/7),(1/3)+(1/10)),
 
-		createbox((2/7),(1/2)+(1/10)),
-		createfire((3/7),(1/2)+(1/10)),
-		createbox((6/7),(1/2)+(1/10)),
-		createfire((5/7),(1/2)+(1/10)),
-		createbox((4/7),(1/2)+(1/10)),
+		-- createbox((2/7),(1/2)+(1/10)),
+		-- createfire((3/7),(1/2)+(1/10)),
+		-- createbox((6/7),(1/2)+(1/10)),
+		-- createfire((5/7),(1/2)+(1/10)),
+		-- createbox((4/7),(1/2)+(1/10)),
 
-		createbox((3/7),(2/3)+(1/10)),
-		createbox((5/7),(2/3)+(1/10)),
-		createbox((4/7),(2/3)+(1/10)),
+		-- createbox((3/7),(2/3)+(1/10)),
+		-- createbox((5/7),(2/3)+(1/10)),
+		-- createbox((4/7),(2/3)+(1/10)),
 
-		createbox((3/7),(4/5)+(1/10)),
-		createbox((5/7),(4/5)+(1/10)),
+		-- createbox((3/7),(4/5)+(1/10)),
+		-- createbox((5/7),(4/5)+(1/10)),
 
-		createfire((2/7),(4/5)+(1/10)),
-		createfire((4/7),(4/5)+(1/10)),
-		createfire((6/7),(4/5)+(1/10)),
+		-- createfire((2/7),(4/5)+(1/10)),
+		-- createfire((4/7),(4/5)+(1/10)),
+		-- createfire((6/7),(4/5)+(1/10)),
 
 		
 		createexit((1/2),0),
-		-- createexit((0),(1/2)),
-	}
+	},
+	walls=l1oneew
  }
+ createnfs(onee.gos,l1oneewbfs)
+
  onef={
 	bg=love.graphics.newImage("level1/onef.png"),
 	gos={
@@ -179,19 +192,50 @@ function initlvl1()
  -- lvl[6]=onef
  lvl[7]=onee
 
- cx=0
- cy=0
- curscreen=onea
+ 
+ 
+ 
+ -- cx=0
+ -- cy=0
+ -- curscreen=onea
+
+ cx=1
+ cy=3
+ curscreen=onee
  
  love.audio.play(ambiance)
 end
 
 
 
+function boss1gplay()
+	--gplay variables
+	firezoominc=0.1
+	minfirezoom=0.2
+	maxfirezoom=3
+	--amount zoom of fire is decreased on fire hit
+	waterzoominc=-0.3
+	--rank decrease when water splashes fire
+	waterreward=0.4
+
+	--zoom step to create new small fires
+	firestep=0.5
+	childinhibcycles=180
+
+	fireinctimer=0
+	fireincchg=120
+
+	--number of cycles before automatic fire update
+	tickupref=45
+	livingfirebonus=0.01
+
+end
+
 -- boss1=
 function initboss1()
   name='boss 1'
-  dfltgplay()  
+  -- dfltgplay()  
+  boss1gplay()
   globinit()
   
   ply.x=pfw/2
@@ -207,7 +251,7 @@ function initboss1()
 		createfire((1/5),(5/7)),
 		createfire((4/5),(5/7)),
 		createdevil(0.5,0.3,-1,-1),
-		createdbarrel(0.5,0.5),
+		createdbarrel(0.5,0.7),
 
 		-- createbox((1/2),(1/4)),
 		-- createexit((1/2),(15/16)),
@@ -351,6 +395,7 @@ function initlvl2()
  }
   createbfs(twoa.gos,twoawbfs)
  
+ require("level2.twocw")
  twoc={
 	bg=love.graphics.newImage("level2/2c.png"),
 	gos={
@@ -383,8 +428,12 @@ function initlvl2()
 		
 		createexit((1/2),0),
 		createexit((1/2),15/16),
-	}
+	},
+	walls=twocw
  }
+  createbfs(twoc.gos,twocwbfs)
+
+
  require("level2.threeaw")
  threea={
 	bg=love.graphics.newImage("level2/3a.png"),

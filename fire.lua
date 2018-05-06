@@ -18,7 +18,8 @@ function changezoomadjustcoords(f,z)
 	  refreshxyfromzoom(f)
 end
 
-
+--TODO refactor with callback?	 
+--this is for fire
 function wateronburning(i,f)
 	--collision water with fire 
 	for j,b in pairs(bullets) 
@@ -105,6 +106,17 @@ function firebehavior(f,i)
 		 f.hasspawned=true
 		end
 	end
+	
+	if collhbs(ply.x,ply.y,ply.hbx,f.x,f.y,f.hbx) then
+		print("coll fire !!!!!!!!!!!!!!")
+		--maybe spawn fireman
+		table.insert(curscreen.gos,createfx(f.cx/pfw,f.cy/pfh,flareframes))
+		table.remove(curscreen.gos,i)
+		-- table.insert(curscreen.gos,createfire(b.cx/pfw,b.cy/pfh))
+		love.audio.stop(rankup)
+		love.audio.play(rankup)
+		rankcounter=rankcounter+1
+	end
 end
 
 --handles zoom from center coordinates
@@ -180,6 +192,21 @@ function createbfs(addhere,boxlist)
 		table.insert(
 			addhere,
 			createfire(bfx/pfw,bfy/pfh,0.4,bluefireframes,true)
+			)
+	end
+end
+
+--lets create from zazanim file analysis
+function createnfs(addhere,boxlist)
+
+	for i,v in ipairs(boxlist)
+	do
+		print("program create nf")
+		bfx=v.minx+(v.maxx-v.minx)/2
+		bfy=v.miny+(v.maxy-v.miny)/2
+		table.insert(
+			addhere,
+			createfire(bfx/pfw,bfy/pfh)
 			)
 	end
 end

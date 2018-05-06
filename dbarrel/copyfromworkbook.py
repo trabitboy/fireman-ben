@@ -10,7 +10,9 @@ wb="c:/Users/thomas/Dropbox/current_zazanim_projects/firemanben/"
 tgt="./"
 
 tomove=[
-    {'i':"011",'t':"db1"},
+    {'i':"094",'t':"db1"},
+    {'i':"095",'t':"db2"},
+    {'i':"096",'t':"db3"},
     ]
 
 for obj in tomove:

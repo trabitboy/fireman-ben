@@ -9,9 +9,8 @@ function updategameover()
  if gameoverwait>0 then
 	gameoverwait=gameoverwait-1
  else
-
 	 j=polljoy()
-	 if love.keyboard.isDown("space") or fingeroneid~=nil or j.start~=nil then
+	 if love.keyboard.isDown("space") or fingeroneid~=nil or j.mainfire~=nil then
 	  inittitle()
 	  drawfunc=drawtitle
 	  updatefunc=updatetitle
@@ -23,9 +22,6 @@ end
 
 
 function drawgameover()
-
-
-
 
  love.graphics.setCanvas(vscreen)
  love.graphics.clear()

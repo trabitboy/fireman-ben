@@ -5,8 +5,8 @@ shader=true
 fit=true
 
 
---TRAIILERS
 --VIES
+--TRAIILERS
 --HIGH SCORES (time of completion)
 
 --radar
@@ -252,6 +252,7 @@ end
 require("video")
 require("joypoller")
 require("loadfilter")
+require("lives")
 require("bigdevil")
 require("devil")
 require("devilbarrel")
@@ -293,7 +294,7 @@ print(lvl)
 
 function love.load()
 
- video = love.graphics.newVideo( 'test.ogv' )
+ -- video = love.graphics.newVideo( 'test.ogv' )
 
 --from stack overflow
 -- vec2 onePixel = vec2(1.0, 1.0) / u_textureSize;

@@ -1,7 +1,20 @@
 
-function initvideo()
+numvid=1
 
- -- video = love.graphics.newVideo( 'test.ogv' )
+vids={
+	'demovids/lv1trailer.ogv',
+	'demovids/boss1trailer.ogv',
+	'demovids/lv2trailer.ogv',
+	'demovids/boss2trailer.ogv',
+}
+
+function initvideo()
+ numvid=numvid+1
+ if numvid>tbllngth(vids) then
+  numvid=1
+ end
+ print (" numvid played "..numvid)
+ video = love.graphics.newVideo( vids[numvid] )
  video:play()
 end
 

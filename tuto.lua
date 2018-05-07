@@ -24,7 +24,6 @@ end
 --starts at any level
 function startgame(lnum)
   lvlglob.current=lnum
-  score=0
   ply={}
   
   ply.refhb=fmanframes.down[1]
@@ -36,14 +35,14 @@ function startgame(lnum)
   print(ply.w)
   
   
-  -- initlvl1()
-  -- initlvl2()
   levels[lvlglob.current]()
   
+  initlives()
+  drawfunc=drawlives
+  updatefunc=updatelives
   
-  drawfunc=drawgame
-  -- updatefunc=updategame
-  updatefunc=updatelvlintro
+  -- drawfunc=drawgame
+  -- updatefunc=updatelvlintro
 
 end
 
@@ -64,6 +63,8 @@ function updatetuto()
  else
  
 	 j=polljoy()
+    score=0
+    lives=3
 	 
 	 if love.keyboard.isDown("space")  or j.mainfire~=nil  then
 		startgame(1)

@@ -137,10 +137,20 @@ function updategame()
   overlayopacity=rankcounter/28*255
  
   if rankcounter>=28 then
-   initgameover()
-   finalpic=gameover
-   drawfunc=drawgameover
-   updatefunc=updategameover
+   lives=lives-1
+   
+   if lives==0 then
+    initgameover()
+    finalpic=gameover
+    drawfunc=drawgameover
+    updatefunc=updategameover
+   else
+    levels[lvlglob.current]()
+    initlives()
+    drawfunc=drawlives
+    updatefunc=updatelives
+  
+   end
   end
  
  

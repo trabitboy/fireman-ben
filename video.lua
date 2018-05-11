@@ -9,6 +9,7 @@ vids={
 }
 
 function initvideo()
+ love.audio.stop()
  numvid=numvid+1
  if numvid>tbllngth(vids) then
   numvid=1
@@ -30,6 +31,8 @@ function updatevideo()
  end
  
  if video:isPlaying()==false then
+    love.audio.stop()
+	love.audio.play(ambiance) 
   inittitle()
   updatefunc=updatetitle
   drawfunc=drawtitle

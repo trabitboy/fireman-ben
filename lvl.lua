@@ -454,7 +454,7 @@ function initlvl2()
 	bg=love.graphics.newImage("level2/3b.png"),
 	gos={
 		createexit(0,(1/2)),
-		createexit(1,(1/2)),
+		createexit(15/16,(1/2)),
 		-- createexit(15/16,(1/2)),
 		-- createfire((6/8),(1/2)),
 		-- createbox((1/2),(1/4)),

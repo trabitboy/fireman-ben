@@ -29,7 +29,7 @@ function drawgameover()
 
  if gameoverwait==0 then
 	-- print(animstep)
-	love.graphics.draw(pbframes[animstep],cvsw-64,cvsh-64)
+	love.graphics.draw(pbframes[animstep].pic,cvsw-64,cvsh-64)
  end
  
  -- love.graphics.print("game over!",200,200)

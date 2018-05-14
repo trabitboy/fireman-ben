@@ -71,11 +71,11 @@ end
 function createexit(pcx,pcy)
 	ret={}
 	ret.pic=exitframes[1]
-	ret.picdata=ret.pic:getData()
-	ret.w=exitframes[1]:getData():getWidth()
-	ret.h=exitframes[1]:getData():getHeight()
-	ret.x=pfw*pcx-ret.pic:getData():getWidth()/2
-	ret.y=pfh*pcy-ret.pic:getData():getHeight()/2
+	ret.picdata=ret.pic.data
+	ret.w=exitframes[1].data:getWidth()
+	ret.h=exitframes[1].data:getHeight()
+	ret.x=pfw*pcx-ret.pic.data:getWidth()/2
+	ret.y=pfh*pcy-ret.pic.data:getHeight()/2
 	ret.bfunc=exbehavior
 	ret.hbx=computebox(8,ret.picdata,1)
 	calculatenav(ret)

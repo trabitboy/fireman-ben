@@ -32,8 +32,9 @@ function createfx(pcx,pcy,frames)
 	ret.frames=frames
 	ret.fnum=1
 	ret.pic=frames[1]
-	ret.x=pfw*pcx-ret.pic:getData():getWidth()/2
-	ret.y=pfh*pcy-ret.pic:getData():getHeight()/2
+	
+	ret.x=pfw*pcx-ret.pic.data:getWidth()/2
+	ret.y=pfh*pcy-ret.pic.data:getHeight()/2
 	ret.bfunc=fxbhv
 	ret.anclk=0
 

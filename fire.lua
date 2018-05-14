@@ -151,7 +151,7 @@ function createfire(pcx,pcy,zoom,frames,spawn)
 	ret.zoom=zoom
 	
 	ret.pic=ret.frames[1]
-	ret.picdata=ret.frames[1]
+	ret.picdata=ret.frames[1].data
 	--center 
 	ret.cx=pcx*pfw
 	ret.cy=pcy*pfh

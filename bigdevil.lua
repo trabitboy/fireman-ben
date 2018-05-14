@@ -83,8 +83,8 @@ function createbigdevil(pcx,pcy,yspeed,spawndir)
 	ret.cy=pfh*pcy
 	-- -ret.pic:getData():getHeight()/2
 	-- ret.blocking=true
-	ret.picdata=ret.pic:getData()
-	ret.hbx=computebox(0,ret.pic:getData(),1)
+	ret.picdata=ret.pic.data
+	ret.hbx=computebox(0,ret.picdata,1)
 	ret.blockvictory=true
 	ret.tspawn=bigdevilspawnref
 	ret.zoom=1

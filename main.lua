@@ -1,8 +1,12 @@
-fullscreen=true
+fullscreen=false
 displayboxs=false
 
 shader=true
-fit=true
+fit=false
+
+function unittest()
+ ret=loadfilter("pressbutton/pb1.png")
+end
 
 
 --VIES
@@ -252,6 +256,12 @@ end
 require("video")
 require("joypoller")
 require("loadfilter")
+
+-- unittest()
+-- print("return from unit test")
+-- love.event.quit()
+
+
 require("lives")
 require("bigdevil")
 require("devil")
@@ -276,6 +286,7 @@ require("plybullet")
 require("drawgame")
 -- require("boss")
 -- require("touchsupport")
+
 
 print(currLvl)
 
@@ -394,7 +405,7 @@ function love.load()
  -- aie=love.audio.newSource("sounds/aieshort.wav", "static")
  extinction=love.audio.newSource("contributed/exinguished_fire_extinguish.wav","static")
  
- ambiance=love.audio.newSource("contributed/exinguished_ambiance.wav")
+ ambiance=love.audio.newSource("contributed/exinguished_ambiance.wav","stream")
  ambiance:setVolume(0.5)
  ambiance:setLooping(true)
  love.audio.play(ambiance) 

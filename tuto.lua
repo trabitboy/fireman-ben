@@ -28,9 +28,9 @@ function startgame(lnum)
   
   ply.refhb=fmanframes.down[1]
   
-  ply.w=ply.refhb:getData():getWidth()
-  ply.h=ply.refhb:getData():getHeight()
-  ply.hbx=computebox(16,ply.refhb:getData(),1)
+  ply.w=ply.refhb.data:getWidth()
+  ply.h=ply.refhb.data:getHeight()
+  ply.hbx=computebox(16,ply.refhb.data,1)
   print("loading p.w")
   print(ply.w)
   
@@ -90,11 +90,11 @@ end
 function drawtuto()
  love.graphics.setCanvas(vscreen)
  love.graphics.clear()
- love.graphics.draw(intro.bg,0,0)
-  love.graphics.setColor(255,255,255,128) 
- love.graphics.draw(deathframes[animstep],0,-200)
+ love.graphics.draw(intro.bg.pic,0,0)
+  love.graphics.setColor(255,255,255,128/255) 
+ love.graphics.draw(deathframes[animstep].pic,0,-200)
  love.graphics.setColor(255,255,255,255) 
- love.graphics.draw(intro.truck[truckstep],0,0)
+ love.graphics.draw(intro.truck[truckstep].pic,0,0)
  -- love.graphics.push()
  -- love.graphics.scale(2, 2)   -- reduce everything by 50% in both X and Y coordinates
  -- -- love.graphics.print("Scaled text", 50, 50)
@@ -109,7 +109,7 @@ function drawtuto()
 
  if tutowait==0 then
 	-- print(animstep)
-	love.graphics.draw(pbframes[animstep],cvsw-64,cvsh-64)
+	love.graphics.draw(pbframes[animstep].pic,cvsw-64,cvsh-64)
  end
 
  -- love.graphics.print("your score",200,300)

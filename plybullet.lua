@@ -79,7 +79,7 @@ function fireBullet(x,y)
 	  b.pic=wdownframes[1]
 	 end
 	 -- b.pic=waterframes[1]
-	 b.picdata=b.pic:getData()
+	 b.picdata=b.pic.data
 	 b.x=x-b.picdata:getWidth()/2+ply.w/2
 	 b.y=y-b.picdata:getHeight()/2
 	 b.hbx=computebox(0,b.picdata,1)
@@ -88,7 +88,7 @@ function fireBullet(x,y)
 	 
 	 b.behavior=bulletBehavior
 	 table.insert(bullets,b)
-	 love.audio.rewind(piou)
+	 love.audio.stop(piou)
 	 love.audio.play(piou)
 	 bulletinhib=bulletinhibref
 	 updatecxcy(b)

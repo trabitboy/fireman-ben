@@ -90,7 +90,7 @@ function createdevil(pcx,pcy,ivx,ivy)
 	--if we use zoom we shall also use picdata,
 	--but could be refac to w h
 	ret.zoom=0.75
-	ret.picdata=ret.pic:getData()
+	ret.picdata=ret.pic.data
 
 	
 	refreshxyfromzoom(ret)

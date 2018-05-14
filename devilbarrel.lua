@@ -78,8 +78,8 @@ function createdbarrel(pcx,pcy)
 	ret.cy=pfh*pcy
 	-- -ret.pic:getData():getHeight()/2
 	-- ret.blocking=true
-	ret.picdata=ret.pic:getData()
-	ret.hbx=computebox(0,ret.pic:getData(),1)
+	ret.picdata=ret.pic.data
+	ret.hbx=computebox(0,ret.pic.data,1)
 	ret.blockvictory=true
 	ret.tspawn=dbspawnref
 	ret.zoom=1

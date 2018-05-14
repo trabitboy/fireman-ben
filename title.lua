@@ -24,12 +24,12 @@ function drawtitle()
 
  if titlewait==0 then
 	-- print(animstep)
-	love.graphics.draw(pbframes[animstep],cvsw-64,cvsh-64)
+	love.graphics.draw(pbframes[animstep].pic,cvsw-64,cvsh-64)
  end
  
  
  
- love.graphics.print("v 1.4 brotaru2",0,0)
+ love.graphics.print("v 1.5 love11",0,0)
 
  
  -- love.graphics.print("Last gamepad button pressed: "..lastbutton, 10, 10)

@@ -110,16 +110,16 @@ function drawgame()
  -- animstep=1
  
  if facing=="d" then
-  ppic=fmanframes.down[animstep] 
+  ppic=fmanframes.down[animstep].pic 
  end
  if facing=="u" then
-  ppic=fmanframes.up[animstep] 
+  ppic=fmanframes.up[animstep].pic
  end
  if facing=="l" then
-  ppic=fmanframes.left[animstep] 
+  ppic=fmanframes.left[animstep].pic
  end
  if facing=="r" then
-  ppic=fmanframes.right[animstep] 
+  ppic=fmanframes.right[animstep].pic
  end
  
  -- love.graphics.draw(fmanframes.up[1] ,pfx+px,pfy+py)
@@ -144,11 +144,11 @@ function drawgame()
 	bx=bcx-w/2
 	by=bcy-h/2
 	
-    love.graphics.draw(v.pic,bx,by)
+    love.graphics.draw(v.pic.pic,bx,by)
    -- love.graphics.print("Scaled text", 50, 50) 
     love.graphics.pop()
    else
-    love.graphics.draw(v.pic,(pfx+v.x),(pfy+v.y))
+    love.graphics.draw(v.pic.pic,(pfx+v.x),(pfy+v.y))
    end
    --dbg
    if displayboxs then
@@ -159,9 +159,9 @@ function drawgame()
  
  for i,v in pairs(bullets) 
  do 
-  love.graphics.setColor(255,255,255,200) 
-  love.graphics.draw(v.pic,pfx+v.x,pfy+v.y)
-  love.graphics.setColor(255,255,255,255) 
+  love.graphics.setColor(1,1,1,200/255) 
+  love.graphics.draw(v.pic.pic,pfx+v.x,pfy+v.y)
+  love.graphics.setColor(1,1,1,1) 
  end
  
  if displayboxs then
@@ -171,30 +171,30 @@ function drawgame()
  displayscore() 
  displaygauge()
  displayradar()
- love.graphics.setColor(255,0,0,overlayopacity) 
+ love.graphics.setColor(1,0,0,overlayopacity/255) 
  love.graphics.rectangle("fill",0,0,640,480)
  if overlayopacity>64 then
-  love.graphics.setColor(255,255,255,overlayopacity-64) 
-  love.graphics.draw(deathframes[animstep],0,0)
+  love.graphics.setColor(1,1,1,(overlayopacity-64)/255) 
+  love.graphics.draw(deathframes[animstep].pic,0,0)
  end
  
  
  if updatefunc==updatelvlintro then
-  love.graphics.setColor(0,0,0,255) 
+  love.graphics.setColor(0,0,0,1) 
   love.graphics.rectangle("fill",200,200,100,100)
-  love.graphics.setColor(255,255,255,255) 
+  love.graphics.setColor(1,1,1,1) 
   love.graphics.print(name,210,210)
  end
 
  if updatefunc==updatelvloutro then
-  love.graphics.setColor(0,0,0,255) 
   love.graphics.rectangle("fill",200,200,100,100)
-  love.graphics.setColor(255,255,255,255) 
+  love.graphics.setColor(0,0,0,1) 
+  love.graphics.setColor(1,1,1,1) 
   love.graphics.print('well done !',210,210)
  end
 
 
  
- love.graphics.setColor(255,255,255,255) 
+ love.graphics.setColor(1,1,1,1) 
  rdrvscreen()
 end

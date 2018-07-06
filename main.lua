@@ -1,8 +1,25 @@
-fullscreen=false
-displayboxs=false
 
+--HIGH SCORES (time of completion) WIP
+-- difficulty select WIP
+
+--lvl 3 encoding in progress; still tons of manual stuff
+-- lvl 3 ; crash on 3rd or 4th screen
+--TODO test sliding on screen change with end cases 
+-- NEGABEN FOR LEVEL 3
+
+--diamond hitbox
+
+--dev
+fullscreen=false
+displayboxs=true
 shader=true
 fit=false
+
+--play
+-- fullscreen=true
+-- displayboxs=false
+-- shader=true
+-- fit=true
 
 function unittest()
  ret=loadfilter("pressbutton/pb1.png")
@@ -11,7 +28,6 @@ end
 
 --VIES
 --TRAIILERS
---HIGH SCORES (time of completion)
 
 --radar
 
@@ -261,7 +277,7 @@ require("loadfilter")
 -- print("return from unit test")
 -- love.event.quit()
 
-
+require("difficultyselect")
 require("lives")
 require("bigdevil")
 require("devil")
@@ -286,7 +302,8 @@ require("plybullet")
 require("drawgame")
 -- require("boss")
 -- require("touchsupport")
-
+require('highscores')
+require('timer')
 
 print(currLvl)
 

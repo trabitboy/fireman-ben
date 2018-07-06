@@ -26,6 +26,8 @@ function wateronburning(i,f)
 	do
 	 if(collhbs(b.x,b.y,b.hbx,f.zx,f.zy,f.hbx)) then
 	  table.remove(bullets,j)
+	  postscore(50,f.cx,f.cy)
+	  
 	  if rankcounter>0 then
 		rankcounter=rankcounter-waterreward
 	  end
@@ -37,6 +39,7 @@ function wateronburning(i,f)
 	 table.insert(curscreen.gos,createfx(f.cx/pfw,f.cy/pfh,smokeframes))
  	 table.remove(curscreen.gos,i)
 	 love.audio.play(extinction)
+	 postscore(1000,f.cx,f.cy)
 	 return true --to chain further
 	end
 

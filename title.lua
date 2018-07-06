@@ -10,6 +10,7 @@
 function inittitle()
 	titlewait=60
 	trailerwait=600
+	-- trailerwait=60
 end
 
 function drawtitle()
@@ -51,9 +52,12 @@ function updatetitle()
  else
 	j=polljoy()
 	 if love.keyboard.isDown("space") or fingeroneid~=nil or j.mainfire~=nil then
-	 inittuto()
-	  drawfunc=drawtuto
-	  updatefunc=updatetuto
+	 -- inittuto()
+	  -- drawfunc=drawtuto
+	  -- updatefunc=updatetuto
+	  initdifsel()
+	  drawfunc=drawdifsel
+	  updatefunc=updatedifsel
 	  return
 	 end
 	
@@ -62,9 +66,15 @@ function updatetitle()
  if trailerwait>0 then
 	trailerwait=trailerwait-1
  else
-	initvideo()
-	updatefunc=updatevideo
-	drawfunc=drawvideo
+	-- initvideo()
+	-- updatefunc=updatevideo
+	-- drawfunc=drawvideo
+	
+	-- initdisplayorenter(9999)
+	initdisplayscores()
+	updatefunc=updatescores
+	drawfunc=drawscores
+	
 	return
   
  end

@@ -8,13 +8,23 @@
 -- end
 
 
+--by adding points this way a visual fx can be added 
+function postscore(points,cx,cy)
+ score =score + points
+end
+
 function tickuprank()
  if tickupinhib>0 then
   tickupinhib=tickupinhib-1
  end
 
- if tickupinhib==0 and rankcounter>=0 then
-  rankcounter=rankcounter+1
+ if tickupinhib==0 then
+ --seems sometimes rank goes below zero 
+ --and rankcounter>=0 then
+  --rankcounter=rankcounter+1
+  print("difselmulti "..difselmulti)
+  rankcounter=rankcounter+difselmulti
+  
   print("RANK UP "..rankcounter)
   tickupinhib=tickupref
  end
@@ -68,6 +78,54 @@ function tickanimstep()
  end 
 end
 
+
+function pointinwall (x,y,screen)
+--walls
+ if screen.walls~=nil then
+	 for i,v in pairs(screen.walls) 
+	  do
+	   -- print("bhv")
+	   -- if v.blocking==true then
+		if(
+  		    (
+		     (v.minx <= x ) and (x <=v.maxx)
+			)
+			and
+			(
+			 (v.miny <= y ) and (y <=v.maxy)
+			
+			)
+		) then
+		 print("BLOCKING POINT WALL COLL")
+		 return true
+		end
+	   end
+	  -- end
+  end
+
+  return false
+end
+
+function plywallcoll(tx,ty,screen)
+
+--walls
+ if screen.walls~=nil then
+	 for i,v in pairs(screen.walls) 
+	  do
+	   -- print("bhv")
+	   -- if v.blocking==true then
+		ret= coll(tx+ply.hbx.x,ty+ply.hbx.y,ply.hbx.w,ply.hbx.h,v.minx,v.miny,v.maxx-v.minx,v.maxy-v.miny)
+		if ret == true then
+		 print("BLOCKING WALL COLL")
+		 return true
+		end
+	   end
+	  -- end
+  end
+
+  return false
+end
+
 function checkblockingcoll(tx,ty)
  for i,v in pairs(curscreen.gos) 
   do
@@ -81,21 +139,23 @@ function checkblockingcoll(tx,ty)
    end
   end
   
---walls
- if curscreen.walls~=nil then
-	 for i,v in pairs(curscreen.walls) 
-	  do
-	   -- print("bhv")
-	   -- if v.blocking==true then
-		ret= coll(tx+ply.hbx.x,ty+ply.hbx.y,ply.hbx.w,ply.hbx.h,v.minx,v.miny,v.maxx-v.minx,v.maxy-v.miny)
-		if ret == true then
-		 print("BLOCKING WALL COLL")
-		 return true
-		end
-	   end
-	  -- end
-  end
-
+-- --walls
+ -- if curscreen.walls~=nil then
+	 -- for i,v in pairs(curscreen.walls) 
+	  -- do
+	   -- -- print("bhv")
+	   -- -- if v.blocking==true then
+		-- ret= coll(tx+ply.hbx.x,ty+ply.hbx.y,ply.hbx.w,ply.hbx.h,v.minx,v.miny,v.maxx-v.minx,v.maxy-v.miny)
+		-- if ret == true then
+		 -- print("BLOCKING WALL COLL")
+		 -- return true
+		-- end
+	   -- end
+	  -- -- end
+  -- end
+ if plywallcoll(tx,ty,curscreen) then
+  return true 
+ end
 
   
  return false
@@ -120,6 +180,124 @@ function updatelvloutro()
    return
 
  end
+end
+
+--TODO
+--new style room change:
+-- if player center out of room, we navigate to new room if possible (
+-- if one is defined in the map, if target point is not blocking)
+-- if blocking search for a position that is not 
+-- ( if nav left right, scan height )
+-- ( if nav up down, scan width )
+function emptybordernav(mox,moy)
+		--dflt
+		newx=ply.x
+		newy=ply.y
+		
+		if(mox==1) then
+			newx=8
+		end
+		if(mox==-1) then
+			newx=pfw-(ply.w+8)
+		end
+		if(moy==1) then
+			newy=8
+		end
+		if(moy==-1) then
+			newy=pfh-(ply.h+8)
+		end
+		
+		
+		tgt = getscreenfromoffset(mox,moy)
+		if tgt~=nil then
+ 		--search for block
+			  if plywallcoll(newx,newy,tgt) then
+				   print("basic block")
+				   --if block, check if center is in walls
+				   --(means that hand drawn misalignment should be no more than half size of ply)
+				   if pointinwall(newx+ply.w/2,newy+ply.h/2,tgt) then 
+				   -- if center in wall, we can do nothing for you
+				    print("target center in wall, nothing we can do")
+				    return false
+				   end
+				   print( "target not in wall, trying to slide" )
+				   --TODO if center ok search for better target coord sliding - then +
+				   
+				   goodpos=false
+				   
+				   if mox ~=0 then
+				    -- x move, sliding on y 
+					maxslide=ply.h/2
+					
+					for i=1,maxslide 
+					do
+					 if plywallcoll(newx,newy+i,tgt)==false then
+					  goodpos=true
+					  newy=newy+i
+					 end
+					end
+		
+					if goodpos==false then
+						for i=-maxslide,1 
+						do
+						 if plywallcoll(newx,newy+i,tgt)==false then
+						  goodpos=true
+						  newy=newy+i
+						 end
+						end
+					
+					end
+		
+				   elseif moy ~=0 then 
+				    --y move sliding on x
+					maxslide=ply.w/2
+					
+					for i=1,maxslide 
+					do
+					 if plywallcoll(newx+i,newy,tgt)==false then
+					  goodpos=true
+					  newx=newx+i
+					 end
+					end
+		
+					if goodpos==false then
+						for i=-maxslide,1 
+						do
+						 if plywallcoll(newx+i,newy,tgt)==false then
+						  goodpos=true
+						  newx=newx+i
+						 end
+						end
+					
+					end
+					
+				   end
+				   if goodpos==false then
+				    print("couldn t find better pos sliding")
+				    return false
+				   else
+				    print("found better pos sliding")
+				    success =navigate(mox,moy,newx,newy)
+				   end
+
+			  else
+			 
+				  --no block on land
+				   success =navigate(mox,moy,newx,newy)
+			  end
+		else
+		 success=false
+		end
+		
+		return success
+end
+
+--utility
+function plycx()
+ return ply.x+ply.w/2
+end
+function plycy()
+ return ply.y+ply.h/2
 end
 
 function updategame()
@@ -234,6 +412,24 @@ function updategame()
  -- else
   ply.x=tx
   ply.y=ty
+ end
+ 
+ nav=false
+ 
+ if plycx()>pfw-16 then
+  nav=emptybordernav(1,0)
+ elseif plycy()>pfh-16 then
+  nav=emptybordernav(0,1)
+ elseif plycx()<16 then
+  nav=emptybordernav(-1,0)
+ elseif plycy()<16 then
+  nav=emptybordernav(0,-1)  
+ end
+ 
+ if nav==true then
+    print("nav true")
+	--see you on next screen
+	return
  end
  
  for i,v in pairs(curscreen.gos) 

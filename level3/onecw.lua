@@ -1,0 +1,34 @@
+onecw={
+ {
+ minx=6,
+ miny=0,
+ maxx=639,
+ maxy=99,
+ },
+ {
+ minx=0,
+ miny=94,
+ maxx=55,
+ maxy=469,
+ },
+ {
+ minx=515,
+ miny=223,
+ maxx=639,
+ maxy=409,
+ },
+ {
+ minx=212,
+ miny=423,
+ maxx=639,
+ maxy=479,
+ },
+}
+onecwbfs={
+ {
+ minx=386,
+ miny=225,
+ maxx=403,
+ maxy=242,
+ },
+}

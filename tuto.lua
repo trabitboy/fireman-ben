@@ -81,6 +81,10 @@ function updatetuto()
 	 if love.keyboard.isDown("4") then
 		startgame(4)
 	 end
+
+	 if love.keyboard.isDown("5") then
+		startgame(5)
+	 end
 	 
  end
 end

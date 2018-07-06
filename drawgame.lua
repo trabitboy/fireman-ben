@@ -60,8 +60,8 @@ end
 function displayscore()
   love.graphics.draw(scoremask,512,0)
   
-  -- love.graphics.print("score",512,25)
-  -- love.graphics.print(score,512,40)
+  love.graphics.print("score",512,25)
+  love.graphics.print(score,512,40)
 end
 
 function drawhitbox(o)

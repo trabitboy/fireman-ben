@@ -1,0 +1,46 @@
+threebw={
+ {
+ minx=0,
+ miny=0,
+ maxx=121,
+ maxy=30,
+ },
+ {
+ minx=129,
+ miny=0,
+ maxx=282,
+ maxy=176,
+ },
+ {
+ minx=291,
+ miny=0,
+ maxx=639,
+ maxy=33,
+ },
+ {
+ minx=390,
+ miny=263,
+ maxx=639,
+ maxy=477,
+ },
+ {
+ minx=0,
+ miny=284,
+ maxx=57,
+ maxy=479,
+ },
+ {
+ minx=66,
+ miny=444,
+ maxx=377,
+ maxy=479,
+ },
+}
+threebwbfs={
+ {
+ minx=499,
+ miny=121,
+ maxx=522,
+ maxy=160,
+ },
+}

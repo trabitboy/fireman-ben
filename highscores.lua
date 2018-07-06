@@ -4,6 +4,8 @@
 
 serialize=require("ser")
 
+maxscore=5
+
 function defaulths()
  return {
 			easy={{name='baguette',score=100},{name='man',score=100},{name='barrel',score=100},{name='force',score=100},{name='slime',score=100}},
@@ -13,6 +15,22 @@ function defaulths()
 end
 
 currenttable='easy'
+
+
+function shuffletable()
+	if currenttable=='easy' then
+		currenttable='normal'
+		return
+	end
+	if currenttable=='normal' then
+		currenttable='hard'
+		return
+	end
+	if currenttable=='hard' then
+		currenttable='easy'
+		return
+	end
+end
 
 
 function loadscores()
@@ -38,18 +56,69 @@ local timer =nil
 
 local state=nil
 
+--ascii code current sel
 local currentcharnum=nil
 local name=nil
+--char num in edited string 
+letternum=nil
+local editedslot=nil
 
-function initenterscore()
+-- returns correct table slot or nil
+function getslot(tenths)
+	for i=1,maxscore 
+	do
+		-- print(tenths)
+		-- print(hics)
+		if tenths>highscores[currenttable][i].score then
+			return i
+		end
+	end
+	return nil
+end
+
+--if we need to enter slots we need to shift highscores
+function shiftslots(slot,tenths,name)
+	for i=maxscore,slot,-1 
+	do
+		highscores[currenttable][i]=highscores[currenttable][i-1]
+	end
+	newslot={}
+	newslot.score=tenths
+	newslot.name=name
+	highscores[currenttable][slot]=newslot
+end
+
+function initenterscore(tenths)
  name='aaa'
  currentcharnum=1
- state='enter'
+ letternum=1
+ 
+ local slot=getslot(tenths)
+ print("slot "..slot)
+
+ if slot~=nil then
+	print('is a high score')
+	shiftslots(slot,tenths,name)
+	editedslot=slot
+	 state='enter'
+	 updatefunc=updatescores
+	 drawfunc=drawscores
+ else
+	print('not enough points going display')
+	initdisplayscores()
+ end
+
 end
 
 function initdisplayscores()
  timer=createtimer(120)
  state='display'
+ updatefunc=updatescores
+ drawfunc=drawscores
+end
+
+function replace_char(pos, str, r)
+    return str:sub(1, pos-1) .. r .. str:sub(pos+1)
 end
 
 local function char(num)
@@ -74,6 +143,7 @@ love.graphics.print(currenttable,250,50)
  end 
  
  if state=='enter' then
+  print('please enter your initials using joystick',100,20)
   love.graphics.print(name,0,0)
   love.graphics.print(char(currentcharnum),0,40)
   
@@ -119,7 +189,19 @@ function updatescores()
 	 end
 	 inhibhalfsecond()
 	end
- 
+
+-- TODO on fire we edit name, then we push it back in highscores slot (we work in string)
+	if j.mainfire or love.keyboard.isDown('j') and inhibtimer==nil then
+	 print('select')
+	 name=replace_char(letternum,name,char(currentcharnum))
+	 highscores[currenttable][editedslot].name=name
+	 letternum=letternum+1
+	 if letternum>3 then
+		initdisplayscores()
+		return
+	 end
+	 inhibhalfsecond()
+	end
  --TODO timer between presses 
 
  elseif state=='display' then
@@ -135,7 +217,6 @@ function updatescores()
 	
 -- on button press go to title
 	j=polljoy()
-	
 	
 	if love.keyboard.isDown("return") or fingeroneid~=nil or j.mainfire~=nil then
 	  inittitle()

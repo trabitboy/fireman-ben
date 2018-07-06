@@ -2,33 +2,33 @@ onecw={
  {
  minx=6,
  miny=0,
- maxx=639,
+ maxx=539,
  maxy=99,
  },
  {
  minx=0,
  miny=94,
- maxx=55,
+ maxx=47,
  maxy=469,
  },
  {
- minx=515,
+ minx=435,
  miny=223,
- maxx=639,
+ maxx=539,
  maxy=409,
  },
  {
- minx=212,
+ minx=179,
  miny=423,
- maxx=639,
+ maxx=539,
  maxy=479,
  },
 }
 onecwbfs={
  {
- minx=386,
+ minx=326,
  miny=225,
- maxx=403,
+ maxx=340,
  maxy=242,
  },
 }

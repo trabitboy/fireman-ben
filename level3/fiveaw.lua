@@ -1,34 +1,34 @@
 fiveaw={
  {
- minx=361,
+ minx=305,
  miny=0,
- maxx=589,
+ maxx=497,
  maxy=316,
  },
  {
- minx=29,
+ minx=25,
  miny=10,
- maxx=221,
+ maxx=187,
  maxy=290,
  },
  {
  minx=0,
  miny=296,
- maxx=56,
+ maxx=48,
  maxy=479,
  },
  {
- minx=573,
+ minx=484,
  miny=302,
- maxx=630,
+ maxx=532,
  maxy=464,
  },
 }
 fiveawbfs={
  {
- minx=280,
+ minx=237,
  miny=127,
- maxx=299,
+ maxx=253,
  maxy=153,
  },
 }

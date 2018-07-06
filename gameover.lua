@@ -11,9 +11,11 @@ function updategameover()
  else
 	 j=polljoy()
 	 if love.keyboard.isDown("space") or fingeroneid~=nil or j.mainfire~=nil then
-	  inittitle()
-	  drawfunc=drawtitle
-	  updatefunc=updatetitle
+		initenterscore(score)
+		return
+	  -- inittitle()
+	  -- drawfunc=drawtitle
+	  -- updatefunc=updatetitle
 	 end
  end
 

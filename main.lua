@@ -1,9 +1,13 @@
 
 --HIGH SCORES (time of completion) WIP
--- difficulty select WIP
-
+-- difficulty select 
+	--animate
+	--arrows
 --lvl 3 encoding in progress; still tons of manual stuff
 -- lvl 3 ; crash on 3rd or 4th screen
+-- lvl 3 ; not properly scaled to fit
+-- bouncing nega bens you need to avoid ( bounce on wall )
+-- they could generate fire perdiodically or when they hit a wall
 --TODO test sliding on screen change with end cases 
 -- NEGABEN FOR LEVEL 3
 

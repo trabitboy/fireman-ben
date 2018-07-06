@@ -2,45 +2,45 @@ threebw={
  {
  minx=0,
  miny=0,
- maxx=121,
+ maxx=102,
  maxy=30,
  },
  {
- minx=129,
+ minx=109,
  miny=0,
- maxx=282,
+ maxx=238,
  maxy=176,
  },
  {
- minx=291,
+ minx=246,
  miny=0,
- maxx=639,
+ maxx=539,
  maxy=33,
  },
  {
- minx=390,
+ minx=330,
  miny=263,
- maxx=639,
+ maxx=539,
  maxy=477,
  },
  {
  minx=0,
  miny=284,
- maxx=57,
+ maxx=48,
  maxy=479,
  },
  {
- minx=66,
+ minx=56,
  miny=444,
- maxx=377,
+ maxx=318,
  maxy=479,
  },
 }
 threebwbfs={
  {
- minx=499,
+ minx=422,
  miny=121,
- maxx=522,
+ maxx=441,
  maxy=160,
  },
 }

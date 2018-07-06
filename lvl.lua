@@ -594,7 +594,7 @@ function initlvl3()
   lv2gplay()
   globinit() 
   ply.x=pfw/2
-  ply.y=pfh/5
+  ply.y=pfh*4/5
  require("level3.onecw")
 
   onec={

@@ -71,9 +71,11 @@ function updatetitle()
 	-- drawfunc=drawvideo
 	
 	-- initdisplayorenter(9999)
+	--initenterscore(99999)
+	shuffletable()
 	initdisplayscores()
-	updatefunc=updatescores
-	drawfunc=drawscores
+	-- updatefunc=updatescores
+	-- drawfunc=drawscores
 	
 	return
   

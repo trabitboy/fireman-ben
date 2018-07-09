@@ -773,6 +773,7 @@ function initlvl3()
 		-- createfire((6/8),(1/2)),
 		-- createbox((1/2),(1/4)),
 		-- createexit((1/8),(1/2)),
+		createnegaben(0.4,0.5,1,1)
 	},
 	walls=fiveaw,
  }

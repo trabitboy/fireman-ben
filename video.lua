@@ -3,9 +3,9 @@ numvid=1
 
 vids={
 	'demovids/lv1trailer.ogv',
-	'demovids/boss1trailer.ogv',
+	-- 'demovids/boss1trailer.ogv',
 	'demovids/lv2trailer.ogv',
-	'demovids/boss2trailer.ogv',
+	-- 'demovids/boss2trailer.ogv',
 }
 
 function initvideo()
@@ -48,7 +48,7 @@ function drawvideo()
 
  if titlewait==0 then
 	-- print(animstep)
-	love.graphics.draw(pbframes[animstep],cvsw-64,cvsh-64)
+	love.graphics.draw(pbframes[animstep].pic,cvsw-64,cvsh-64)
  end
 
  rdrvscreen()

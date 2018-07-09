@@ -34,7 +34,7 @@ end
 
 
 function loadscores()
- if love.filesystem.exists('scores.lua') then
+ if love.filesystem.getInfo('scores.lua').exists then
   highscores=love.filesystem.load('scores.lua')()
  else
   highscores=defaulths()
@@ -88,6 +88,10 @@ function shiftslots(slot,tenths,name)
 	highscores[currenttable][slot]=newslot
 end
 
+--enter score finished when this is complete
+local entertimer=nil
+
+
 function initenterscore(tenths)
  name='aaa'
  currentcharnum=1
@@ -101,6 +105,7 @@ function initenterscore(tenths)
 	shiftslots(slot,tenths,name)
 	editedslot=slot
 	 state='enter'
+	 entertimer=createtimer(3600)
 	 updatefunc=updatescores
 	 drawfunc=drawscores
  else
@@ -111,7 +116,7 @@ function initenterscore(tenths)
 end
 
 function initdisplayscores()
- timer=createtimer(120)
+ timer=createtimer(1200)
  state='display'
  updatefunc=updatescores
  drawfunc=drawscores
@@ -143,9 +148,9 @@ love.graphics.print(currenttable,250,50)
  end 
  
  if state=='enter' then
-  print('please enter your initials using joystick',100,20)
-  love.graphics.print(name,0,0)
-  love.graphics.print(char(currentcharnum),0,40)
+  love.graphics.print('please enter your initials using joystick',100,20)
+  love.graphics.print(name,400,20)
+  love.graphics.print(char(currentcharnum),440,20)
   
  end
  
@@ -163,6 +168,7 @@ end
 
 local inhibtimer=nil
 
+
 function inhibhalfsecond()
  inhibtimer=createtimer(30)
 
@@ -172,6 +178,19 @@ function updatescores()
 
 
  if state=='enter' then
+ 
+  if entertimer~=nil then
+   -- print('ticking timer')
+   -- print(entertimer.time)
+   entertimer:tick()
+   if entertimer.finished then
+    entertimer=nil
+	print('going back 2 display')
+	initdisplayscores()
+   end
+  end
+
+ 
   if inhibtimer~=nil then
    inhibtimer:tick()
    if inhibtimer.finished then
@@ -182,7 +201,7 @@ function updatescores()
   j=polljoy()
   --TODO move letter and validate letter
 	if j.up or love.keyboard.isDown('w') and inhibtimer==nil then
-	 print('dozn')
+	 print('up')
 	 currentcharnum=currentcharnum+1
 	 if currentcharnum>26 then
 	  currentcharnum=1
@@ -190,6 +209,16 @@ function updatescores()
 	 inhibhalfsecond()
 	end
 
+	if j.down or love.keyboard.isDown('s') and inhibtimer==nil then
+	 print('down')
+	 currentcharnum=currentcharnum-1
+	 if currentcharnum<0 then
+	  currentcharnum=26
+	 end
+	 inhibhalfsecond()
+	end
+	
+	
 -- TODO on fire we edit name, then we push it back in highscores slot (we work in string)
 	if j.mainfire or love.keyboard.isDown('j') and inhibtimer==nil then
 	 print('select')

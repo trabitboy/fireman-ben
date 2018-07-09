@@ -10,7 +10,7 @@
 -- they could generate fire perdiodically or when they hit a wall
 --TODO test sliding on screen change with end cases 
 -- NEGABEN FOR LEVEL 3
-
+-- giga skull with eyes filled with fire end of lvl 3 ?
 --diamond hitbox
 
 --dev
@@ -298,6 +298,7 @@ require("gameover")
 require("tuto")
 require("title")
 require("victory")
+require("negaben")
 -- require("baddybullet")
 require("maingameloop")
 require("plybullet")

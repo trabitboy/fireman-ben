@@ -7,6 +7,8 @@
 	}
 --workaround for 3 steps anim clk
 
+local video=true
+
 function inittitle()
 	titlewait=60
 	trailerwait=600
@@ -66,16 +68,17 @@ function updatetitle()
  if trailerwait>0 then
 	trailerwait=trailerwait-1
  else
-	-- initvideo()
-	-- updatefunc=updatevideo
-	-- drawfunc=drawvideo
+	if video== true then
+		video=false
+		initvideo()
+		updatefunc=updatevideo
+		drawfunc=drawvideo
 	
-	-- initdisplayorenter(9999)
-	--initenterscore(99999)
-	shuffletable()
-	initdisplayscores()
-	-- updatefunc=updatescores
-	-- drawfunc=drawscores
+	else
+		video=true
+		shuffletable()
+		initdisplayscores()
+	end
 	
 	return
   

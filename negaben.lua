@@ -4,27 +4,17 @@ local firstbhvtimer=120
 
 local plytargetcycles=240
 
-local devilframes={
-	loadfilter("devil/d1.png"),
-	loadfilter("devil/d2.png"),
-	loadfilter("devil/d3.png"),
-	loadfilter("devil/d4.png"),
-	loadfilter("devil/d1.png"),
-}
-
---used by flames also
-flareframes={
-	loadfilter("dflare/df1.png"),
-	loadfilter("dflare/df2.png"),
-	loadfilter("dflare/df3.png"),
-	loadfilter("dflare/df4.png"),
-	loadfilter("dflare/df5.png"),
+local negabenframes={
+	loadfilter("negaben/down1.png"),
+	loadfilter("negaben/down2.png"),
+	loadfilter("negaben/down3.png"),
 }
 
 
-local function devsecondbhv(b,i)
 
-	b.pic=devilframes[a5step]
+local function negsecondbhv(b,i)
+
+	b.pic=negabenframes[animstep]
 	
 	b.cx=b.cx+b.vx
 	b.cy=b.cy+b.vy
@@ -36,12 +26,12 @@ local function devsecondbhv(b,i)
 	end
 
 	if collhbs(ply.x,ply.y,ply.hbx,b.x,b.y,b.hbx) then
-		print("coll devil !!!!!!!!!!!!!!")
+		print("coll negaben !!!!!!!!!!!!!!")
 		--maybe spawn fireman
 		table.insert(curscreen.gos,createfx(b.cx/pfw,b.cy/pfh,flareframes))
 		table.remove(curscreen.gos,i)
 		table.insert(curscreen.gos,createfire(b.cx/pfw,b.cy/pfh))
-		rankcounter=rankcounter+devilhit
+		rankcounter=rankcounter+negabenhit
 	end
 	
 	chain=wateronburning(i,b)
@@ -55,17 +45,17 @@ local function devsecondbhv(b,i)
 	
 end
 
-local function devfirstbhv(b,i)
+local function negfirstbhv(b,i)
 	b.timer=b.timer-1
 	if b.timer==0 then
 	 b.vx=(ply.x-b.cx)/plytargetcycles
 	 b.vy=(ply.y-b.cy)/plytargetcycles
 	 
-   	 b.bfunc=devsecondbhv
+   	 b.bfunc=negsecondbhv
 	 return
 	end
 
-	b.pic=devilframes[a5step]
+	b.pic=negabenframes[animstep]
 	
 	tx=b.cx+b.vx
 	ty=b.cy+b.vy
@@ -80,9 +70,9 @@ local function devfirstbhv(b,i)
 	refreshxyfromzoom(b)
 end
 
-function createdevil(pcx,pcy,ivx,ivy)
+function createnegaben(pcx,pcy,ivx,ivy)
 	ret={}
-	ret.pic=devilframes[1]
+	ret.pic=negabenframes[1]
 	ret.cx=pfw*pcx
 	ret.cy=pfh*pcy
 	ret.vx=ivx
@@ -96,8 +86,23 @@ function createdevil(pcx,pcy,ivx,ivy)
 	
 	refreshxyfromzoom(ret)
 	
-	ret.bfunc=devfirstbhv
+	ret.bfunc=negfirstbhv
 	ret.timer=firstbhvtimer
-	print("devil at "..ret.x.." "..ret.y)
+	print("negaben at "..ret.x.." "..ret.y)
 	return ret
+end
+
+--lets create from zazanim file analysis
+function createnbs(addhere,boxlist)
+
+	for i,v in ipairs(boxlist)
+	do
+		print("program create nb")
+		bfx=v.minx+(v.maxx-v.minx)/2
+		bfy=v.miny+(v.maxy-v.miny)/2
+		table.insert(
+			addhere,
+			createnegaben(bfx/pfw,bfy/pfh,1,1)
+			)
+	end
 end

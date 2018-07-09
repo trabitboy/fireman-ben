@@ -106,6 +106,7 @@ function pointinwall (x,y,screen)
   return false
 end
 
+--TODO refac for nega ben
 function plywallcoll(tx,ty,screen)
 
 --walls

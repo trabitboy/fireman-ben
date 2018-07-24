@@ -15,10 +15,13 @@ function exbehavior(e,i)
 	--test player coll
 	--if player coll go to screen
 	-- if(ocoll(ply,e)) then
-	if collhbs(e.x,e.y,e.hbx,ply.x,ply.y,ply.hbx) then
-		print("SCREEN TRANSITION "..e.mox.." "..e.moy)
-		navigate(e.mox,e.moy,e.sp.x,e.sp.y)
-	end
+
+
+	--090718 replaced by new mechanism
+	-- if collhbs(e.x,e.y,e.hbx,ply.x,ply.y,ply.hbx) then
+		-- print("SCREEN TRANSITION "..e.mox.." "..e.moy)
+		-- navigate(e.mox,e.moy,e.sp.x,e.sp.y)
+	-- end
 end
 
 

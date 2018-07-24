@@ -600,184 +600,98 @@ function initlvl3()
   onec={
 	bg=love.graphics.newImage("level3/1c.png"),
 	gos={
-		-- createexit((15/16),(1/2)),
-		-- createexit((1/2),(15/16)),
 	},
 	walls=onecw,
  }
- createbfs(onec.gos,onecwbfs)
+ createnbs(onec.gos,onecwbfs)
  
 
  require("level3.onedw")
  oned={
 	bg=love.graphics.newImage("level3/1d.png"),
 	gos={
-		-- createexit((15/16),(1/2)),
-		-- createexit((1/16),(1/2)),
 	},
 	walls=onedw,
  }
-  createbfs(oned.gos,onedwbfs)
+  createnbs(oned.gos,onedwbfs)
 
   require("level3.twocw")
 
  twoc={
 	bg=love.graphics.newImage("level3/2c.png"),
 	gos={
-		-- createfire((6/8),(1/2)),
-		-- createbox((1/3),(3/6)),
-		-- createbox((1/2),(4/6)),
-		-- createbox((1/3),(5/6)),
-		-- createbox((2/3),(3/6)),
-		-- createbox((1/2),(3/6)),
-		-- createfire((1/2),(1/4)),
-		-- createfire((2/3),(1/4)),
-		-- createfire((3/4),(7/8)),
-		-- createexit((1/2),(15/16)),
-		-- createexit((0),(1/2)),
 	},
 	walls=twocw,
  }
-  createbfs(twoc.gos,twocwbfs)
+  createnbs(twoc.gos,twocwbfs)
  
  require("level3.threecw")
  threec={
 	bg=love.graphics.newImage("level3/3c.png"),
 	gos={
-		-- createfire((6/8),(1/2)),
-		-- createbox((1/2),(1/4)),
-		-- createfire((3/4),(1/2)),
-		-- createfire((1/4),(1/2)),
-		-- createbox((1/2),(1/2)),
-		-- createbox((1/3),(1/2)),
-		-- createbox((2/3),(1/2)),
-		-- createbox((3/4),(1/3)),
-		-- createbox((3/4),(1/6)),
-		-- createexit((1/2),(1/10)),
-		-- createexit((1/2),(9/10)),
-		-- createexit((1/2),0),
-		-- createexit((1/2),15/16),
-		
 	},
 	walls=threecw
  }
-  createbfs(threec.gos,threecwbfs)
+  createnbs(threec.gos,threecwbfs)
  
  require("level3.twocw")
  twoc={
 	bg=love.graphics.newImage("level3/2c.png"),
 	gos={
-		-- createfire((6/8),(1/2)),
-		-- createbox((1/2),(1/4)),
-		-- createfire((6/8),(1/2)),
-		-- createfire((6/8),(1/2)),
-		-- createfire((6/8),(1/2)),
-		-- createbox((3/7),(1/3)),
-		-- createbox((5/7),(1/3)),
-		-- createbox((4/7),(1/3)),
-
-		-- createbox((2/7),(1/2)),
-		-- createfire((3/7),(1/2)),
-		-- createbox((6/7),(1/2)),
-		-- createfire((5/7),(1/2)),
-		-- createbox((4/7),(1/2)),
-
-		-- createbox((3/7),(2/3)),
-		-- createbox((5/7),(2/3)),
-		-- createbox((4/7),(2/3)),
-
-		-- createbox((3/7),(4/5)),
-		-- createbox((5/7),(4/5)),
-
-		-- createfire((2/7),(4/5)),
-		-- createfire((4/7),(4/5)),
-		-- createfire((6/7),(4/5)),
-
-		
-		-- createexit((1/2),0),
-		-- createexit((1/2),15/16),
 	},
 	walls=twocw
  }
-  createbfs(twoc.gos,twocwbfs)
+  createnbs(twoc.gos,twocwbfs)
 
 
  require("level3.threeaw")
  threea={
 	bg=love.graphics.newImage("level3/3a.png"),
 	gos={
-		-- createexit((1/2),0),
-		-- createexit(15/16,(1/2)),
-		-- createfire((6/8),(1/2)),
-		-- createbox((1/2),(1/4)),
-		-- createexit((1/8),(1/2)),
 	},
 	walls=threeaw,
  }
- createbfs(threea.gos,threeawbfs)
+ createnbs(threea.gos,threeawbfs)
  
  require("level3.threebw")
  threeb={
 	bg=love.graphics.newImage("level3/3b.png"),
 	gos={
-		-- createexit(0,(1/2)),
-		-- createexit(15/16,(1/2)),
-		-- createexit(15/16,(1/2)),
-		-- createfire((6/8),(1/2)),
-		-- createbox((1/2),(1/4)),
-		-- createexit((1/8),(1/2)),
 	},
 	walls=threebw,
  }
- createbfs(threeb.gos,threebwbfs)
+ createnbs(threeb.gos,threebwbfs)
  
  
  require("level3.threecw")
  threec={
 	bg=love.graphics.newImage("level3/3c.png"),
 	gos={
-		-- createexit((1/2),0),
-		-- createexit(1/16,(1/2)),
-		-- createfire((6/8),(1/2)),
-		-- createbox((1/2),(1/4)),
-		-- createexit((1/8),(1/2)),
 	},
 	walls=threecw,
  }
- createbfs(threec.gos,threecwbfs)
- -- oneb={}
- -- onec={}
+ createnbs(threec.gos,threecwbfs)
 
  
  require("level3.fouraw")
  foura={
 	bg=love.graphics.newImage("level3/4a.png"),
 	gos={
-		-- createexit((1/2),0),
-		-- createexit(15/16,(1/2)),
-		-- createfire((6/8),(1/2)),
-		-- createbox((1/2),(1/4)),
-		-- createexit((1/8),(1/2)),
 	},
 	walls=fouraw,
  }
- createbfs(foura.gos,fourawbfs)
+ createnbs(foura.gos,fourawbfs)
 
  
  require("level3.fiveaw")
  fivea={
 	bg=love.graphics.newImage("level3/5a.png"),
 	gos={
-		-- createexit((1/2),0),
-		-- createexit(15/16,(1/2)),
-		-- createfire((6/8),(1/2)),
-		-- createbox((1/2),(1/4)),
-		-- createexit((1/8),(1/2)),
-		createnegaben(0.4,0.5,1,1)
+		-- createnegaben(0.4,0.5,1,1)
 	},
 	walls=fiveaw,
  }
- createbfs(fivea.gos,fiveawbfs)
+ createnbs(fivea.gos,fiveawbfs)
  
  
  mzx=4

@@ -16,6 +16,20 @@ function collhbs(x1,y1,hb1,x2,y2,hb2)
  return coll(x1+hb1.x,y1+hb1.y,hb1.w,hb1.h,x2+hb2.x,y2+hb2.y,hb2.w,hb2.h)
 end
 
+
+function stepofpf(x,y,w,h)
+ if x< 0 or y <0 then
+  return true
+ end
+  
+ if x> pfw-w or y >pfh-h then
+  return true
+ end
+  
+ return false
+end 
+
+
 function outofpf(x,y,w,h)
  if x< -w or y <-h then
   return true

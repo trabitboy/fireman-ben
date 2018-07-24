@@ -1,0 +1,60 @@
+lvl 1 qljouter flèches auqnd il y q des caisses ( les gens ne comprennent pas le chemin )
+
+boss 1  trop facile en normal
+
+trous niveaux 2 pas au niveau vsiuellement
+
+anim réaction feu ?
+
+explosions immédiatement petits diables sur boss ( projectiles )
+pas de réele sentiment danger sur touche des diablotins contre les boss
+
+vitesse projectile ( eau devrait être plus rapide )
+recharge eau ( option gameplay )
+réduire taille eau ( option gameplay )
+
+hud victoire transparent
+
+
+pas assez de feu bleu sur le niveau bleu, ils ne se propagent pas assez vite 
+
+écran de difficulté montrant les 3 possibilités en dézoomé
+
+pb avec notion de vie pas intuitive ?
+
+les gens passent les highscores sans les voir 
+
+chute de batiment avec cible 
+
+niveau 3 space invaders pas possible de passer à droite
+
+tuto contrôle néo géo
+
+( pour laisser boutons appuyés )
+
+habiletés perso différents 
+bazooka eau 
+grenade eau
+
+déplacer map dans un coin dans le champ visuel car les gens regardent en letter box 
+
+eau accroche trop sur caisse , rajouter 
+la hitbox est pas logique car la caisse est dessinée en perspective
+
+valoriser le score 
+
+forcer à tirer en diagonale 
+
+laisser feu se développer pour débloquer passage
+
+niveau de difficulté global de l'étage  
+( inter pièces ? tu entres le feu a déjà progressé ? indexé sur compteur principal ? )
+
+
+POUSSER L ASPECT PUZZLE SIMPLE
+
+pousser des objets avec de l'eau pour remplir des trous ?
+
+eau pour pousser manivelle qui déroulerait pont ou ouvrirait porte ?
+
+chqnger nombre de vies pour niveau de difficulté ?

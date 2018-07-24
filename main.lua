@@ -1,4 +1,11 @@
 
+-- blit blocking and ennemies with brown alpha when danger increases + sin wave frag shader
+
+-- lvl 3 : snakes vert and hori, see sketchbook
+-- WIP lvl3 content
+-- WIP highscores invisible to players
+-- WIP neo geo attract mode
+
 --HIGH SCORES (time of completion) WIP
 -- difficulty select 
 	--animate
@@ -13,11 +20,13 @@
 -- giga skull with eyes filled with fire end of lvl 3 ?
 --diamond hitbox
 
+
 --dev
 fullscreen=false
 displayboxs=true
 shader=true
 fit=false
+dbgstart=true
 
 --play
 -- fullscreen=true
@@ -458,15 +467,28 @@ function love.load()
     -- end
   -- end
 
- 
- end
 
-x=100
 
-inittitle()
-drawfunc=drawtitle
-updatefunc=updatetitle
 
+	if dbgstart==nil then
+	
+		inittitle()
+		drawfunc=drawtitle
+		updatefunc=updatetitle
+	else
+		lives=1
+		initdifselhard()
+		startgame(5)
+		drawfunc=drawgame
+		updatefunc=updategame
+	end	
+  
+end
+
+
+
+	
+	
 function love.draw()
  drawfunc()
 end

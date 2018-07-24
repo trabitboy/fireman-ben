@@ -106,18 +106,16 @@ function pointinwall (x,y,screen)
   return false
 end
 
---TODO refac for nega ben
-function plywallcoll(tx,ty,screen)
-
+--WIP for nega ben
+function wallcoll(tx,ty,hb,screen)
 --walls
  if screen.walls~=nil then
 	 for i,v in pairs(screen.walls) 
 	  do
-	   -- print("bhv")
-	   -- if v.blocking==true then
-		ret= coll(tx+ply.hbx.x,ty+ply.hbx.y,ply.hbx.w,ply.hbx.h,v.minx,v.miny,v.maxx-v.minx,v.maxy-v.miny)
+		ret= coll(tx+hb.x,ty+hb.y,hb.w,hb.h,v.minx,v.miny,v.maxx-v.minx,v.maxy-v.miny)
 		if ret == true then
-		 print("BLOCKING WALL COLL")
+		 print("BLOCKING WALL COLL o "..tx+hb.x..' '..ty+hb.y..' '..hb.w..' '..hb.h..' w '..v.minx..' '..v.miny..' '..v.maxx-v.minx..' '..v.maxy-v.miny)
+		 
 		 return true
 		end
 	   end
@@ -125,6 +123,29 @@ function plywallcoll(tx,ty,screen)
   end
 
   return false
+
+end
+
+--being refac for nega ben
+function plywallcoll(tx,ty,screen)
+
+	return wallcoll(tx,ty,ply.hbx,screen)
+--walls
+ -- if screen.walls~=nil then
+	 -- for i,v in pairs(screen.walls) 
+	  -- do
+	   -- -- print("bhv")
+	   -- -- if v.blocking==true then
+		-- ret= coll(tx+ply.hbx.x,ty+ply.hbx.y,ply.hbx.w,ply.hbx.h,v.minx,v.miny,v.maxx-v.minx,v.maxy-v.miny)
+		-- if ret == true then
+		 -- print("BLOCKING WALL COLL")
+		 -- return true
+		-- end
+	   -- end
+	  -- -- end
+  -- end
+
+  -- return false
 end
 
 function checkblockingcoll(tx,ty)
@@ -365,6 +386,13 @@ function updategame()
  j=polljoy()
 
  firepressed = love.keyboard.isDown("space") or j.mainfire==true
+ 
+ if love.keyboard.isDown('b') then 
+	displayboxs=true
+ end
+ if love.keyboard.isDown('n') then
+	displayboxs=false
+end
  
  if love.keyboard.isDown("left") or love.keyboard.isDown("a") or j.left~=nil then
   if firepressed==false then

@@ -21,9 +21,14 @@ hardpic=loadfilter("difficultyselect/h.png")
 function initdifsel()
  difselwait=60
  dfpic=normalpic
- difselmulti=0.3
+ difselmulti=0.5
 end
 
+function initdifselhard()
+ difselwait=60
+ dfpic=normalpic
+ difselmulti=1
+end
 
 
 function updatedifsel()

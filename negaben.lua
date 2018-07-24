@@ -12,75 +12,79 @@ local negabenframes={
 
 
 
-local function negsecondbhv(b,i)
 
-	b.pic=negabenframes[animstep]
-	
-	b.cx=b.cx+b.vx
-	b.cy=b.cy+b.vy
+--WIP
+local vseqs= {
+	{x=1,y=0},
+	{x=0,y=1},
+	{x=-1,y=0},
+	{x=0,y=-1},
+}
 
-	--not fully consistent but for clean up (you should be penalised)
-	if outofpf(b.cx,b.cy,64,64) then
-	 table.remove(curscreen.gos,i)
-	 return
-	end
 
-	if collhbs(ply.x,ply.y,ply.hbx,b.x,b.y,b.hbx) then
-		print("coll negaben !!!!!!!!!!!!!!")
-		--maybe spawn fireman
-		table.insert(curscreen.gos,createfx(b.cx/pfw,b.cy/pfh,flareframes))
-		table.remove(curscreen.gos,i)
-		table.insert(curscreen.gos,createfire(b.cx/pfw,b.cy/pfh))
-		rankcounter=rankcounter+negabenhit
-	end
-	
-	chain=wateronburning(i,b)
-	if chain == true then
-	 print("FLARE //")
-	 --WIP doesnt show
-	 -- createfx(b.cx/pfw,(b.cy-flareframes[1]:getData():getHeight()/2)/pfh,flareframes) -- stupid, needs to flare on touch
-	 table.insert(curscreen.gos,createfx(b.cx/pfw,b.cy/pfh,flareframes)) -- stupid, needs to flare on touch
-	end
-	refreshxyfromzoom(b)
-	
-end
 
 local function negfirstbhv(b,i)
-	b.timer=b.timer-1
-	if b.timer==0 then
-	 b.vx=(ply.x-b.cx)/plytargetcycles
-	 b.vy=(ply.y-b.cy)/plytargetcycles
+	-- b.timer=b.timer-1
+	-- if b.timer==0 then
+	 -- b.vx=(ply.x-b.cx)/plytargetcycles
+	 -- b.vy=(ply.y-b.cy)/plytargetcycles
 	 
-   	 b.bfunc=negsecondbhv
-	 return
-	end
+   	 -- b.bfunc=negsecondbhv
+	 -- return
+	-- end
 
+	print(b.zx ..' '..b.zy)
+	
 	b.pic=negabenframes[animstep]
 	
-	tx=b.cx+b.vx
-	ty=b.cy+b.vy
+	tx=b.zx+b.vx
+	ty=b.zy+b.vy
 	
-	if outofpf(tx,ty,64,64) then
-	 return
+	b.step=b.step-1
+	
+	if stepofpf(tx,ty,b.picdata:getWidth(),b.picdata:getHeight()) or wallcoll(tx,ty,b.hbx,curscreen) or b.step<=0 then
+		 -- b.vx=-b.vx
+		 -- b.vy=-b.vy
+		 b.seqnum=b.seqnum+1
+		if b.seqnum>4 then b.seqnum=1 end
+		b.vx=vseqs[b.seqnum].x
+		b.vy=vseqs[b.seqnum].y
+		--TODO pb on coll , 2 seq changes in a row
+		print('seq change'..b.vx..' '..b.vy)
+		b.step=200
+		table.insert(
+			curscreen.gos,
+			createfire(b.cx/pfw,b.cy/pfh,0.4,bluefireframes,true)
+		)
+
+		
+		
+		return
 	else
-	 b.cx=tx
-	 b.cy=ty
+	 b.cx=b.cx+b.vx
+	 b.cy=b.cy+b.vy
 	end
 	wateronburning(i,b)
 	refreshxyfromzoom(b)
 end
 
-function createnegaben(pcx,pcy,ivx,ivy)
+
+
+
+function createnegaben(pcx,pcy,seqnum)
 	ret={}
+	ret.blockvictory=true
+	
 	ret.pic=negabenframes[1]
 	ret.cx=pfw*pcx
 	ret.cy=pfh*pcy
-	ret.vx=ivx
-	ret.vy=ivy
-
+	ret.vx=vseqs[seqnum].x
+	ret.vy=vseqs[seqnum].y
+	ret.seqnum=seqnum
+	ret.step=200
 	--if we use zoom we shall also use picdata,
 	--but could be refac to w h
-	ret.zoom=0.75
+	ret.zoom=1
 	ret.picdata=ret.pic.data
 
 	

@@ -24,11 +24,37 @@ onecw={
  maxy=479,
  },
 }
-onecwbfs={
+onecwm1s={
+ {
+ minx=186,
+ miny=209,
+ maxx=201,
+ maxy=224,
+ },
+ {
+ minx=247,
+ miny=211,
+ maxx=267,
+ maxy=238,
+ },
  {
  minx=326,
  miny=225,
  maxx=340,
  maxy=242,
+ },
+}
+onecwm2s={
+ {
+ minx=269,
+ miny=258,
+ maxx=290,
+ maxy=277,
+ },
+ {
+ minx=315,
+ miny=343,
+ maxx=341,
+ maxy=366,
  },
 }

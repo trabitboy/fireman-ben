@@ -36,7 +36,7 @@ twocw={
  maxy=353,
  },
  {
- minx=428,
+ minx=443,
  miny=199,
  maxx=539,
  maxy=303,
@@ -72,11 +72,31 @@ twocw={
  maxy=479,
  },
 }
-twocwbfs={
+twocwm1s={
  {
- minx=113,
- miny=248,
- maxx=144,
- maxy=265,
+ minx=376,
+ miny=228,
+ maxx=392,
+ maxy=253,
+ },
+}
+twocwm2s={
+ {
+ minx=214,
+ miny=107,
+ maxx=243,
+ maxy=140,
+ },
+ {
+ minx=110,
+ miny=243,
+ maxx=155,
+ maxy=271,
+ },
+ {
+ minx=273,
+ miny=386,
+ maxx=288,
+ maxy=401,
  },
 }

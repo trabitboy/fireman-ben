@@ -1,7 +1,19 @@
+--gameplay: power up of water between levels?
+
+-- update snake so that can be damaged even if blocked in change loop
+-- still some initials blocked in walls
+-- little snake block some time when reduced ( both horizontal and verts )
+-- snake wall coll disables them from turning around
+-- launch frame analysis by room to speed process up
 
 -- blit blocking and ennemies with brown alpha when danger increases + sin wave frag shader
 
 -- lvl 3 : snakes vert and hori, see sketchbook
+-- update wall detect to track MOAR COLORS
+-- at least 2 for snakes
+-- make bump into wall increase danger a lot ? 
+-- GIANT SNAKE AS BOSS?
+
 -- WIP lvl3 content
 -- WIP highscores invisible to players
 -- WIP neo geo attract mode
@@ -308,6 +320,7 @@ require("tuto")
 require("title")
 require("victory")
 require("negaben")
+require('snake')
 -- require("baddybullet")
 require("maingameloop")
 require("plybullet")

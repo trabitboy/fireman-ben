@@ -84,11 +84,25 @@ threeaw={
  maxy=479,
  },
 }
-threeawbfs={
+threeawm1s={
  {
  minx=462,
  miny=128,
  maxx=475,
  maxy=144,
  },
+ {
+ minx=305,
+ miny=199,
+ maxx=323,
+ maxy=229,
+ },
+ {
+ minx=187,
+ miny=251,
+ maxx=207,
+ maxy=281,
+ },
+}
+threeawm2s={
 }

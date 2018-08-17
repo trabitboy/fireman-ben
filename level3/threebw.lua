@@ -36,11 +36,37 @@ threebw={
  maxy=479,
  },
 }
-threebwbfs={
+threebwm1s={
  {
  minx=422,
  miny=121,
  maxx=441,
  maxy=160,
+ },
+ {
+ minx=341,
+ miny=135,
+ maxx=357,
+ maxy=166,
+ },
+ {
+ minx=242,
+ miny=292,
+ maxx=257,
+ maxy=311,
+ },
+ {
+ minx=169,
+ miny=303,
+ maxx=184,
+ maxy=325,
+ },
+}
+threebwm2s={
+ {
+ minx=171,
+ miny=376,
+ maxx=192,
+ maxy=397,
  },
 }

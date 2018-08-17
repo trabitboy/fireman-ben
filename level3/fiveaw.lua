@@ -24,11 +24,13 @@ fiveaw={
  maxy=464,
  },
 }
-fiveawbfs={
+fiveawm1s={
  {
  minx=237,
  miny=127,
  maxx=253,
  maxy=153,
  },
+}
+fiveawm2s={
 }

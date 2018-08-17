@@ -114,11 +114,43 @@ onedw={
  maxy=479,
  },
 }
-onedwbfs={
+onedwm1s={
+ {
+ minx=270,
+ miny=98,
+ maxx=286,
+ maxy=119,
+ },
+ {
+ minx=430,
+ miny=177,
+ maxx=447,
+ maxy=213,
+ },
+ {
+ minx=92,
+ miny=181,
+ maxx=111,
+ maxy=214,
+ },
  {
  minx=256,
  miny=215,
  maxx=271,
  maxy=239,
+ },
+}
+onedwm2s={
+ {
+ minx=176,
+ miny=266,
+ maxx=196,
+ maxy=286,
+ },
+ {
+ minx=380,
+ miny=277,
+ maxx=401,
+ maxy=299,
  },
 }

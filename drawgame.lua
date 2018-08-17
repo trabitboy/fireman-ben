@@ -80,7 +80,7 @@ function drawhitbox(o)
 end
 
 --of curr screen
-function drawwallboxes()
+function dbgdrawwallboxes()
 	if curscreen.walls~=nil then
 		for i,w in ipairs(curscreen.walls)
 		do
@@ -88,6 +88,18 @@ function drawwallboxes()
 		end
 	end
 end
+
+--above death overlay
+function drawwallboxes()
+	love.graphics.setColor(1,1,1,0.3) 
+	if curscreen.walls~=nil then
+		for i,w in ipairs(curscreen.walls)
+		do
+		 love.graphics.rectangle("fill",w.minx,w.miny,w.maxx-w.minx,w.maxy-w.miny)
+		end
+	end
+end
+
 
 function drawgame()
  love.graphics.setCanvas(vscreen)
@@ -165,7 +177,7 @@ function drawgame()
  end
  
  if displayboxs then
-  drawwallboxes()
+  dbgdrawwallboxes()
  end
  -- drawbaddiehealth()
  displayscore() 
@@ -176,6 +188,12 @@ function drawgame()
  if overlayopacity>64 then
   love.graphics.setColor(1,1,1,(overlayopacity-64)/255) 
   love.graphics.draw(deathframes[animstep].pic,0,0)
+  
+  --experimental, add shader
+  -- drawwallboxes()
+  
+  
+  
  end
  
  

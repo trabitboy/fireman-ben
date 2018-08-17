@@ -25,12 +25,12 @@ fouraw={
  },
  {
  minx=0,
- miny=171,
- maxx=24,
+ miny=172,
+ maxx=10,
  maxy=454,
  },
  {
- minx=96,
+ minx=105,
  miny=275,
  maxx=431,
  maxy=323,
@@ -48,11 +48,37 @@ fouraw={
  maxy=461,
  },
 }
-fourawbfs={
+fourawm1s={
  {
- minx=192,
- miny=209,
- maxx=217,
- maxy=225,
+ minx=358,
+ miny=137,
+ maxx=369,
+ maxy=168,
+ },
+ {
+ minx=49,
+ miny=286,
+ maxx=60,
+ maxy=333,
+ },
+}
+fourawm2s={
+ {
+ minx=194,
+ miny=55,
+ maxx=212,
+ maxy=74,
+ },
+ {
+ minx=183,
+ miny=202,
+ maxx=229,
+ maxy=233,
+ },
+ {
+ minx=159,
+ miny=373,
+ maxx=179,
+ maxy=390,
  },
 }

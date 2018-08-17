@@ -603,7 +603,8 @@ function initlvl3()
 	},
 	walls=onecw,
  }
- createnbs(onec.gos,onecwbfs)
+ createsnks(onec.gos,onecwm1s)
+ createhsnks(onec.gos,onecwm2s)
  
 
  require("level3.onedw")
@@ -613,7 +614,8 @@ function initlvl3()
 	},
 	walls=onedw,
  }
-  createnbs(oned.gos,onedwbfs)
+  createsnks(oned.gos,onedwm1s)
+  createhsnks(oned.gos,onedwm2s)
 
   require("level3.twocw")
 
@@ -623,7 +625,8 @@ function initlvl3()
 	},
 	walls=twocw,
  }
-  createnbs(twoc.gos,twocwbfs)
+  createsnks(twoc.gos,twocwm1s)
+  createhsnks(twoc.gos,twocwm2s)
  
  require("level3.threecw")
  threec={
@@ -632,7 +635,8 @@ function initlvl3()
 	},
 	walls=threecw
  }
-  createnbs(threec.gos,threecwbfs)
+  createsnks(threec.gos,threecwm1s)
+  createhsnks(threec.gos,threecwm2s)
  
  require("level3.twocw")
  twoc={
@@ -641,7 +645,8 @@ function initlvl3()
 	},
 	walls=twocw
  }
-  createnbs(twoc.gos,twocwbfs)
+  createsnks(twoc.gos,twocwm1s)
+  createhsnks(twoc.gos,twocwm2s)
 
 
  require("level3.threeaw")
@@ -651,7 +656,8 @@ function initlvl3()
 	},
 	walls=threeaw,
  }
- createnbs(threea.gos,threeawbfs)
+ createsnks(threea.gos,threeawm1s)
+ createhsnks(threea.gos,threeawm2s)
  
  require("level3.threebw")
  threeb={
@@ -660,7 +666,8 @@ function initlvl3()
 	},
 	walls=threebw,
  }
- createnbs(threeb.gos,threebwbfs)
+ createsnks(threeb.gos,threebwm1s)
+ createhsnks(threeb.gos,threebwm2s)
  
  
  require("level3.threecw")
@@ -670,7 +677,8 @@ function initlvl3()
 	},
 	walls=threecw,
  }
- createnbs(threec.gos,threecwbfs)
+ createsnks(threec.gos,threecwm1s)
+ createhsnks(threec.gos,threecwm2s)
 
  
  require("level3.fouraw")
@@ -680,7 +688,8 @@ function initlvl3()
 	},
 	walls=fouraw,
  }
- createnbs(foura.gos,fourawbfs)
+ createsnks(foura.gos,fourawm1s)
+ createhsnks(foura.gos,fourawm2s)
 
  
  require("level3.fiveaw")
@@ -691,7 +700,8 @@ function initlvl3()
 	},
 	walls=fiveaw,
  }
- createnbs(fivea.gos,fiveawbfs)
+ createsnks(fivea.gos,fiveawm1s)
+ createhsnks(fivea.gos,fiveawm2s)
  
  
  mzx=4

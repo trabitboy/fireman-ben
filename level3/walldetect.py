@@ -34,14 +34,20 @@ wallcolor={
     }
 wallkey=1
 
-bfcol={
+m1col={
     'r':0,
     'g':243,
     'b':243
     }
-bfkey=2
+m2col={
+    'r':0,
+    'g':0,
+    'b':243
+    }
+m1key=2
+m2key=3
 
-def createlua(ws,bfs,fname):
+def createlua(ws,m1s,m2s,fname):
     f=open(fname+'.lua','w')
     f.write(fname+'={\n')
     for w in ws:
@@ -54,10 +60,9 @@ def createlua(ws,bfs,fname):
         f.write(' },\n')
 
     f.write('}\n')
-    f.write(fname+'bfs={\n')
-    for w in bfs:
+    f.write(fname+'m1s={\n')
+    for w in m1s:
         f.write(' {\n')
-        #TODO change to direct coords maybe
         f.write(' minx='+str(w['minx'])+',\n')
         f.write(' miny='+str(w['miny'])+',\n')
         f.write(' maxx='+str(w['maxx'])+',\n')
@@ -65,8 +70,21 @@ def createlua(ws,bfs,fname):
 
         f.write(' },\n')
 
+    f.write('}\n')
+
+    f.write(fname+'m2s={\n')
+    for w in m2s:
+        f.write(' {\n')
+        f.write(' minx='+str(w['minx'])+',\n')
+        f.write(' miny='+str(w['miny'])+',\n')
+        f.write(' maxx='+str(w['maxx'])+',\n')
+        f.write(' maxy='+str(w['maxy'])+',\n')
+
+        f.write(' },\n')
+
+    f.write('}\n')
+
     
-    f.write('}')
 def conditionallyaddtarget(q,map,tx,ty,key):
 
     if tx <0:
@@ -137,8 +155,10 @@ def buildmap(pic):
             toappend=0
             if color.r==wallcolor['r'] and color.g==wallcolor['g'] and color.b==wallcolor['b']:
                 toappend=wallkey    #is wall
-            if color.r==bfcol['r'] and color.g==bfcol['g'] and color.b==bfcol['b']:
-                toappend=bfkey    #is wall
+            if color.r==m1col['r'] and color.g==m1col['g'] and color.b==m1col['b']:
+                toappend=m1key    #is wall
+            if color.r==m2col['r'] and color.g==m2col['g'] and color.b==m2col['b']:
+                toappend=m2key    #is wall
 ##            elif color.r==0 and color.g==255 and color.b==0:
 ##                toappend=2 #takes damage
             mask.append(toappend)
@@ -208,27 +228,25 @@ for pic in pics:
     treatedmap()
 
     walls=[]
-    bfs=[]
+    m1s=[]
+    m2s=[]
     nbwall=0
 
     for j in range(0,cvsh):
         for i in range(0,cvsw):
             if map[cvsw*j+i]==wallkey:
                 detectzone(i,j,wallkey,walls)
-##                if treated[j*cvsw+i]==0 :
-##                    nbwall=nbwall+1
-##                    print("wall coll not treated yest at "+str(i)+" "+str(j))
-##                    wall=detectwallfromhere(i,j,map)
-##                    debugdump(treated,nbwall)
-##                    print(wall)
-##                    walls.append(wall)
     for j in range(0,cvsh):
         for i in range(0,cvsw):
-            if map[cvsw*j+i]==bfkey:
-                detectzone(i,j,bfkey,bfs)
+            if map[cvsw*j+i]==m1key:
+                detectzone(i,j,m1key,m1s)
+    for j in range(0,cvsh):
+        for i in range(0,cvsw):
+            if map[cvsw*j+i]==m2key:
+                detectzone(i,j,m2key,m2s)
                     
                     
-    createlua(walls,bfs,pic['o'])
+    createlua(walls,m1s,m2s,pic['o'])
     
 
     #we curse the map, when we encounter red pix,

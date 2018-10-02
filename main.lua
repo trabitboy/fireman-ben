@@ -1,4 +1,15 @@
+-- neo geo style video intro
+-- add axe to repel crawling ennemies like devils ( pocky style )
+-- make it so that little devils explode direclty on first bhv
+-- level 2 not enough blue fire, add boxes and spawn devil on fire spawn
+-- lvl 3 not hard enough
+-- boss 3 negaben
+
+
 --gameplay: power up of water between levels?
+
+
+
 
 -- update snake so that can be damaged even if blocked in change loop
 -- still some initials blocked in walls
@@ -38,7 +49,7 @@ fullscreen=false
 displayboxs=true
 shader=true
 fit=false
-dbgstart=true
+dbgstart=false
 
 --play
 -- fullscreen=true
@@ -318,7 +329,7 @@ require("coll")
 require("gameover")
 require("tuto")
 require("title")
-require("victory")
+--require("victory")
 require("negaben")
 require('snake')
 -- require("baddybullet")
@@ -483,7 +494,7 @@ function love.load()
 
 
 
-	if dbgstart==nil then
+	if dbgstart~=true then
 	
 		inittitle()
 		drawfunc=drawtitle

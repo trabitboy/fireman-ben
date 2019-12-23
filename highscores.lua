@@ -34,11 +34,13 @@ end
 
 
 function loadscores()
- if love.filesystem.getInfo('scores.lua').exists then
+ scoresFsInfo=love.filesystem.getInfo('scores.lua')
+ print('scores ')
+ print(scoresFsInfo)
+ if scoresFsInfo then
   highscores=love.filesystem.load('scores.lua')()
  else
   highscores=defaulths()
-  
  end
  print(highscores)
  -- debug.debug()

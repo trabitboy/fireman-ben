@@ -19,15 +19,17 @@ end
 function polljoy()
 
 	ret={}
-
+	maintainvjoy(ret)
+	
+	--TODO this is probably why vjoy doesn't work
     if not joystick then return ret end
 	-- print(joystick:getAxis(1))
-	if joystick:getAxis(1)>0.1 then
-	 -- print ("joy right")
+	if joystick:getAxis(1)>0.1 or vjoyright then
+	 print ("joy right")
 	 ret.right=true
 	end
-	if joystick:getAxis(1)<-0.1 then
-	 -- print ("joy left")
+	if joystick:getAxis(1)<-0.1 or vjoyleft then
+	 print ("joy left")
 	 ret.left=true
 	end
 	-- print(joystick:getAxis(2))

@@ -355,19 +355,17 @@ function updategame()
  
  
  
- 
- if to_apply ~=nil then
-  for i,v in pairs(to_apply) 
-  do
-   -- print("bhv")
-   -- v.behavior(v,i) 
-   tx=tx+v.ox
-   ty=ty+v.oy
-   table.remove(to_apply,i)
-  end
-  
- 
- end
+--remnant from danmaku burp 
+ -- if to_apply ~=nil then
+  -- for i,v in pairs(to_apply) 
+  -- do
+   -- -- print("bhv")
+   -- -- v.behavior(v,i) 
+   -- tx=tx+v.ox
+   -- ty=ty+v.oy
+   -- table.remove(to_apply,i)
+  -- end
+ -- end
  
  
  local tx=ply.x

@@ -1,3 +1,8 @@
+
+-- WIP add touch for zaza
+-- TODO render game with shader BEFORE
+-- colored overlay
+
 -- neo geo style video intro
 -- add axe to repel crawling ennemies like devils ( pocky style )
 -- make it so that little devils explode direclty on first bhv
@@ -46,7 +51,7 @@
 
 --dev
 fullscreen=false
-displayboxs=true
+displayboxs=false
 shader=true
 fit=false
 dbgstart=false
@@ -306,6 +311,7 @@ end
 
 -- require("events")
 require("video")
+require("touchsupport")
 require("joypoller")
 require("loadfilter")
 
@@ -339,7 +345,6 @@ require("plybullet")
 -- require("ghost")
 require("drawgame")
 -- require("boss")
--- require("touchsupport")
 require('highscores')
 require('timer')
 
@@ -401,6 +406,87 @@ function love.load()
     }
   ]]
 
+  
+  
+  --GODOT version for ref
+  -- void fragment()
+-- {
+
+    -- vec2 pixel_size = 1.0 / vec2(textureSize(TEXTURE, 0));
+    -- for(int y = -1; y <= 1; y++)
+    -- for(int x = -1; x <= 1; x++)
+    -- {
+        -- vec2 pixel_off = vec2(float(x), float(y));
+        -- vec4 tex = texture(TEXTURE, UV + pixel_off * pixel_size);
+        -- if(tex.rgba == vec4(1.0, 0.0, 0.0, 1.0))
+        -- {
+            -- COLOR = vec4(0.0, 1.0, 0.0, 1.0);
+            -- break;
+        -- }
+    -- }
+-- }
+  
+  --ink
+  --113 0 0
+  
+	--vec4 next= Texel(texture, texture_coords+pixel_size );
+  -- 
+  inksmooth=love.graphics.newShader[[
+	extern number cvsw;
+	extern number cvsh;
+  
+    vec4 effect( vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords ){
+      vec4 pixel = Texel(texture, texture_coords );//This is the current pixel color
+	  number pixel_w = 1.0 / cvsw;
+	  number pixel_h = 1.0 / cvsh;
+	  vec4 ink= vec4(1.0*113.0/255.0,0.0,0.0,1.0);
+	  
+	  vec4 white= vec4(1.0,1.0,1.0,1.0);
+	  
+	  vec2 offset=vec2(2.0*pixel_w,0);
+	  vec2 voffset=vec2(0,2.0*pixel_h);
+	  
+	  vec4 left= Texel(texture, texture_coords+offset );
+	  vec4 right= Texel(texture, texture_coords-offset );
+	  vec4 down= Texel(texture, texture_coords+voffset );
+	  vec4 up= Texel(texture, texture_coords-voffset );
+
+	  vec4 aa= color *(0.5*pixel + 0.5*ink);
+	  
+	  
+	  if (left==ink)  {
+	   if (pixel!=ink){
+       return aa;
+	   }else{
+	   return ink;
+	   }
+	  
+	  }else if(right==ink)  {
+	   if (pixel!=ink){
+       return aa;
+	   }else{
+	   return ink;
+	   }
+	  }else if(up==ink)  {
+	   if (pixel!=ink){
+       return aa;
+	   }else{
+	   return ink;
+	   }
+	  }else if(down==ink)  {
+	   if (pixel!=ink){
+       return aa;
+	   }else{
+	   return ink;
+	   }
+	  }else{
+       return pixel * color;
+	  }
+    }
+  ]]
+  inksmooth:send("cvsw",640.0)
+  inksmooth:send("cvsh",480.0)
+  
 
   normal=love.graphics.newShader[[
     vec4 effect( vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords ){
@@ -438,7 +524,8 @@ function love.load()
   
   -- myShader=crt
   -- myShader=normal
-  myShader=scanline
+  -- myShader=scanline
+  myShader=inksmooth
  initjoy()
 
  -- boss=love.graphics.newImage("boss.png")

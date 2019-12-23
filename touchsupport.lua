@@ -1,9 +1,20 @@
 --touch support
+--we maintain a virtual joystick
+
+vjoyleft=nil
+vjoyright=nil
+vjoyup=nil
+vjoydown=nil
+
 
 
 fingeroneid=nil
+--last touch of finger one (drag counts)
 xfingerone=nil
 yfingerone=nil
+--initial touch of finger one
+xinitfingerone=nil
+yinitfingerone=nil
 
 --data to be pulled is put here
 moveoffsetx=nil
@@ -15,7 +26,42 @@ xfingertwo=nil
 yfingertwo=nil
 
 
+function maintainvjoy(ret)
+	if ( xfingerone==nil and yfingerone==nil) then
+		return ret
+	end
 
+
+	-- vjoyleft=nil
+	if xfingerone<xinitfingerone then
+		ret.left=true
+		print('vj left')
+	end
+	-- vjoyright=nil
+	if xfingerone>xinitfingerone then
+		ret.right=true
+		print('vj right')
+	end
+
+	if yfingerone<yinitfingerone then
+		ret.up=true
+		print('vj up')
+	end
+	-- vjoyright=nil
+	if yfingerone>yinitfingerone then
+		ret.down=true
+		print('vj down')
+	end
+
+	-- vjoyleft=nil
+	-- if xfingerone>xinitfingerone then
+		-- vjoyleft=true
+	-- end
+	-- vjoyleft=nil
+	-- if xfingerone>xinitfingerone then
+		-- vjoyleft=true
+	-- end
+end
 
 function love.touchpressed( id, x, y, dx, dy, pressure )
  print("TOUCH")
@@ -28,6 +74,8 @@ function love.touchpressed( id, x, y, dx, dy, pressure )
   fingeroneid=id
   xfingerone=x
   yfingerone=y
+  xinitfingerone=x
+  yinitfingerone=y
  elseif fingertwoid == nil then
   fingertwoid=id
  end
@@ -39,15 +87,16 @@ to_apply={}
 
 function pushrelative(ox,oy)
  v={}
- if android == true then
-  v.ox=oy
-  v.oy=-ox
+ -- hori game ^^
+ -- if android == true then
+  -- v.ox=oy
+  -- v.oy=-ox
  
- else
+ -- else
   v.ox=ox
   v.oy=oy
  
- end
+ -- end
  table.insert(to_apply,v)
 end
 
@@ -66,6 +115,9 @@ function love.touchmoved( id, x, y, dx, dy, pressure )
   -- print(moveoffsetx)
   -- print(moveoffsety)
   pushrelative(moveoffsetx,moveoffsety)
+  
+  
+ 
  end
  
  
